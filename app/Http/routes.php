@@ -22,6 +22,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+    // Facebook authentication routes...
+    Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+    Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+
     Route::get('/', function () {
         return view('welcome');
     });
