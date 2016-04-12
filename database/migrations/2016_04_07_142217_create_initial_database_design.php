@@ -64,7 +64,7 @@ class CreateInitialDatabaseDesign extends Migration
             $table->string('label');
             $table->string('description');
             $table->bigInteger('amount');
-            $table->smallInteger('payment_status_id')->references('id')->on('payment_statuses');
+            $table->bigInteger('reward_limit');
             $table->timestamps();
         });
     }
