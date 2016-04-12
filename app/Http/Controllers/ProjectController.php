@@ -8,5 +8,8 @@ use App\Http\Requests;
 
 class ProjectController extends Controller
 {
-    //
+    public function create(){
+
+        return view('welcome');
+    }
 }
