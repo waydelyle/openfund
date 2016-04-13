@@ -5,10 +5,10 @@
 <div class="container">
     <div class="col-lg-10">
         <form class="form-horizontal" method="POST" action="/auth/login">
+            {!! csrf_field() !!}
+
             <fieldset>
                 <legend align="center">Log In</legend>
-                {!! csrf_field() !!}
-
                 <div class="form-group">
                     <label for="email" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
@@ -28,7 +28,8 @@
                 </div>
 
                 <div class="form-group" align="center">
-                    <button type="submit">Login</button>
+                    <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="right"
+                            title="Log in to your account">Login</button>
                 </div>
             </fieldset>
         </form>
