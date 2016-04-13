@@ -14,7 +14,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Browse Projects <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Browse Projects</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Messages <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -27,8 +27,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Create Project</a></li>
-                        <li><a href="#">Edit Project</a></li>
+                        <li><a href="/create-project">Create Project</a></li>
+                        <li><a href="/edit-projects">Edit Project</a></li>
                         <li><a href="#">View Project</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Delete Project</a></li>

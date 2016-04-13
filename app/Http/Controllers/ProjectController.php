@@ -10,6 +10,6 @@ class ProjectController extends Controller
 {
     public function create(){
 
-        return view('welcome');
+        return view('projects.create');
     }
 }

@@ -14,6 +14,6 @@ return [
 
     'site' => [
         'name' => env('site_name'),
-        'logo' => asset('/images/logo.php'),
+        'logo' => '',
     ]
 ];

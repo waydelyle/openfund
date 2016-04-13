@@ -29,10 +29,20 @@ class CreateInitialDatabaseDesign extends Migration
             $table->timestamps();
         });
 
+        Schema::create('project_categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('slug')->unique();
+            $table->string('label');
+            $table->string('description');
+            $table->smallInteger('record_status_id')->references('id')->on('record_statuses');
+            $table->timestamps();
+        });
+
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('user_id')->references('id')->on('users');
+            $table->string('project_category_id')->references('id')->on('project_categories');
             $table->text('description');
             $table->bigInteger('amount');
             $table->smallInteger('project_status_id')->references('id')->on('project_statuses');

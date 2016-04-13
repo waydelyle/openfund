@@ -26,6 +26,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
     Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
+    // Projects routes...
+    Route::get('/create-project', 'ProjectController@create');
+    Route::get('/edit-projects', 'ProjectController@edit');
+
     Route::get('/', function () {
         return view('welcome');
     });
