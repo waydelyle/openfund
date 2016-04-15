@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-
 <!-- Page Content -->
 <div class="container">
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="GET" href="/create-project">
         <fieldset>
-            <legend>Create a project</legend>
+            <legend><?= $heading ?></legend>
             <div class="form-group">
                 <label for="inputProjectName" class="col-lg-2 control-label">Project Name</label>
                 <div class="col-lg-10">
@@ -24,7 +23,7 @@
             <div class="form-group">
                 <label for="inputProjectFunding" class="col-lg-2 control-label">Project Funding</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" id="inputProjectFunding" placeholder="R ">
+                    <input type="number" class="form-control" id="inputProjectFunding" placeholder="R">
                 </div>
             </div>
             <div class="form-group">

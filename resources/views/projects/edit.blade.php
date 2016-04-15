@@ -1,8 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-
-        <!-- Page Content -->
+<!-- Page Content -->
 <div class="container">
 
     <form class="form-horizontal">
@@ -24,7 +23,7 @@
             <div class="form-group">
                 <label for="inputProjectFunding" class="col-lg-2 control-label">Project Funding</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" id="inputProjectFunding" placeholder="R ">
+                    <input type="number" class="form-control" id="inputProjectFunding" placeholder="R">
                 </div>
             </div>
             <div class="form-group">
@@ -42,7 +41,7 @@
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
                     <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button href="" type="submit" class="btn btn-primary">Create</button>
                 </div>
             </div>
         </fieldset>

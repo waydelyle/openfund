@@ -27,8 +27,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="/create-project">Create Project</a></li>
-                        <li><a href="/edit-projects">Edit Project</a></li>
+                        <li><a href="/create">Create Project</a></li>
+                        <li><a href="/edit">Edit Project</a></li>
                         <li><a href="#">View Project</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Delete Project</a></li>
