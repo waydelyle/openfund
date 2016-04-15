@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ProjectCategory;
+use Auth;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Project;
+use App\ProjectCategory;
 
 class ProjectController extends Controller
 {
@@ -41,16 +41,27 @@ class ProjectController extends Controller
 
     /**
      * Insert project data into database
-     *
-     * @param Request $request
      */
-    public function createProject(
-        Request $request
-    ) {
-        $user = $request->user();
+    public function createProject(Request $request) {
+        $newProjectPostedData = $request->all();
+
+        $loggedInUser = Auth::user();
+
+        $project = new Project();
+
+        if(!$project->create([
+            'user_id' => $loggedInUser->id,
+            'name' => $newProjectPostedData['inputProjectName'],
+            'description' => $newProjectPostedData['inputProjectDescription'],
+            'amount' => $newProjectPostedData['inputProjectFunding'],
+            'project_category_id' => $newProjectPostedData['inputCategorySelect'],
+        ])){
+            die('fucked out');
+        } else {
+            return view('welcome');
+        }
     }
-
-
+    
     public function editProject(
 
     ) {

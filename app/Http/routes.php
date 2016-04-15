@@ -27,11 +27,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
     // Projects routes...
-    Route::get('/create', 'ProjectController@create');
-    Route::get('/create-project', 'ProjectController@createProject');
-    Route::get('/edit', 'ProjectController@edit');
-    Route::get('/edit-project', 'ProjectController@editProject');
-    Route::get('/delete-project', 'ProjectController@deleteProject');
+    Route::get('create', 'ProjectController@create');
+    Route::post('create-project', 'ProjectController@createProject');
+    Route::get('edit', 'ProjectController@edit');
+    Route::get('edit-project', 'ProjectController@editProject');
+    Route::get('delete-project', 'ProjectController@deleteProject');
 
     Route::get('/', function () {
         return view('welcome');
