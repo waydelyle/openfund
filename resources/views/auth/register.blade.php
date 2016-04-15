@@ -6,9 +6,8 @@
     <div class="col-lg-10">
         <form class="form-horizontal" method="POST" action="/auth/register">
             <fieldset>
+            {!! csrf_field() !!}
                 <legend align="center">Register</legend>
-                {!! csrf_field() !!}
-
                 <div class="form-group">
                     <label for="name" class="col-lg-2 control-label">Name</label>
                     <div class="col-lg-10">
@@ -38,7 +37,9 @@
                 </div>
 
                 <div class="form-group" align="center">
-                    <button type="submit">Register</button>
+                    <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="right"
+                            title="Submit your information">Register
+                    </button>
                 </div>
             </fieldset>
 
