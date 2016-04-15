@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ProjectCategory;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,6 +18,7 @@ class ProjectController extends Controller
         
         return view('projects.create')->with([
             'heading' => 'Create Project',
+            'projectCategories' => ProjectCategory::all(),
         ]);
     }
 
@@ -33,7 +35,7 @@ class ProjectController extends Controller
             'projectName',
             'projectDescription',
             'projectFunding',
-            'projectCategory'
+            'projectCategories' => ProjectCategory::all(),
         ]);
     }
 
@@ -48,15 +50,11 @@ class ProjectController extends Controller
         $user = $request->user();
     }
 
-    /**
-     * Edit project data
-     *
-     * @param Request $request
-     */
+
     public function editProject(
-        Request $request
+
     ) {
-        $user = $request->user();
+        
     }
 
     /**
@@ -65,6 +63,6 @@ class ProjectController extends Controller
      * @param $projectId
      */
     public function deleteProject($projectId) {
-        
+
     }
 }
