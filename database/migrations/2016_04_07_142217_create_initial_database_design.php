@@ -20,6 +20,14 @@ class CreateInitialDatabaseDesign extends Migration
             $table->timestamps();
         });
 
+        Schema::create('funding_statuses', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('slug')->unique();
+            $table->string('label');
+            $table->string('description');
+            $table->timestamps();
+        });
+
         Schema::create('project_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug')->unique();
@@ -46,6 +54,7 @@ class CreateInitialDatabaseDesign extends Migration
             $table->text('description');
             $table->bigInteger('amount');
             $table->smallInteger('project_status_id')->references('id')->on('project_statuses');
+            $table->smallInteger('funding_status_id')->references('id')->on('funding_statuses');
             $table->timestamps();
         });
 

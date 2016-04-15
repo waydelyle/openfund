@@ -24,6 +24,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @param $query
+     * @param $email
+     * @return mixed
+     */
     public function scopeByEmail($query, $email)
     {
         return $query->where('email', $email);
