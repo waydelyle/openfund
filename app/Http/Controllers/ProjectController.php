@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class ProjectController extends Controller
 {
+    /**
+     * Return the create project view
+     *
+     * @return mixed
+     */
     public function create(){
         
         return view('projects.create')->with([
@@ -15,7 +20,13 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function edit() {
+    /**
+     * Return edit project view
+     *
+     * @param $projectId
+     * @return mixed
+     */
+    public function edit($projectId) {
 
         return view('projects.edit')->with([
             'heading' => 'Edit',
@@ -26,19 +37,34 @@ class ProjectController extends Controller
         ]);
     }
 
+    /**
+     * Insert project data into database
+     *
+     * @param Request $request
+     */
     public function createProject(
         Request $request
     ) {
-        
+        $user = $request->user();
     }
 
+    /**
+     * Edit project data
+     *
+     * @param Request $request
+     */
     public function editProject(
         Request $request
     ) {
-        
+        $user = $request->user();
     }
-    
-    public function deleteProject() {
+
+    /**
+     * Delete project
+     *
+     * @param $projectId
+     */
+    public function deleteProject($projectId) {
         
     }
 }
