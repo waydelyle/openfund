@@ -31,6 +31,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/create-project', 'ProjectController@createProject');
     Route::get('/edit', 'ProjectController@edit');
     Route::get('/edit-project', 'ProjectController@editProject');
+    Route::get('/delete-project', 'ProjectController@deleteProject');
 
     Route::get('/', function () {
         return view('welcome');
