@@ -2,12 +2,12 @@
 
 @section('content')
 
-<!-- Page Content -->
+        <!-- Page Content -->
 <div class="container">
 
     <form class="form-horizontal">
         <fieldset>
-            <legend>Create a project</legend>
+            <legend>Edit project</legend>
             <div class="form-group">
                 <label for="inputProjectName" class="col-lg-2 control-label">Project Name</label>
                 <div class="col-lg-10">
