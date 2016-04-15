@@ -12,4 +12,9 @@ class ProjectController extends Controller
 
         return view('projects.create');
     }
+
+    public function edit() {
+
+        return view('projects.edit');
+    }
 }
