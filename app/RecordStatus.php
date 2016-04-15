@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class RecordStatus extends Model
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'record_statuses';
+    
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

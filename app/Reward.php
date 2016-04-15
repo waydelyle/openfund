@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Reward extends Model
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'rewards';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
