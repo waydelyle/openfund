@@ -5,8 +5,8 @@
 <div class="container">
     <div class="col-lg-10">
         <form class="form-horizontal" method="POST" action="/auth/register">
-            {!! csrf_field() !!}
             <fieldset>
+            {!! csrf_field() !!}
                 <legend align="center">Register</legend>
                 <div class="form-group">
                     <label for="name" class="col-lg-2 control-label">Name</label>
