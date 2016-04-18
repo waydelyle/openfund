@@ -1,79 +1,98 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use Auth;
-use Illuminate\Http\Request;
 use App\Project;
 use App\ProjectCategory;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     /**
-     * Return the create project view
+     * Display all projects for the current logged in user.
      *
      * @return mixed
      */
-    public function create(){
-        
-        return view('projects.create')->with([
+    public function index(){
+        $loggedInUser = Auth::user();
+
+        $projectsByUserId = Project::byUserId($loggedInUser->id)->findAll();
+
+        return view('projects.index', ['projects' => $projectsByUserId]);
+    }
+
+    /**
+     * Insert project data into database.
+     *
+     * @param Request $request
+     */
+    public function create(Request $request) {
+        $postedProjectData = $request->all();
+        $loggedInUser = Auth::user();
+
+        if(!empty($postedProjectData)){
+
+            $project = new Project();
+
+            if(!$project->create([
+                'user_id' => $loggedInUser->id,
+                'name' => $postedProjectData['inputProjectName'],
+                'description' => $postedProjectData['inputProjectDescription'],
+                'amount' => $postedProjectData['inputProjectFunding'],
+                'project_category_id' => $postedProjectData['inputCategorySelect'],
+            ]));
+
+            return redirect('/projects');
+        }
+
+        return view('projects.create', [
             'heading' => 'Create Project',
-            'projectCategories' => ProjectCategory::all(),
+            'projectCategories' => ProjectCategory::all()
         ]);
     }
 
     /**
-     * Return edit project view
+     * Return edit project view.
      *
-     * @param $projectId
+     * @param Request $request
+     * @param $id
      * @return mixed
      */
-    public function edit($projectId) {
+    public function edit(Request $request, $id) {
+        $project = Project::find($id);
 
-        return view('projects.edit')->with([
-            'heading' => 'Edit',
-            'projectName',
-            'projectDescription',
-            'projectFunding',
-            'projectCategories' => ProjectCategory::all(),
-        ]);
-    }
-
-    /**
-     * Insert project data into database
-     */
-    public function createProject(Request $request) {
         $newProjectPostedData = $request->all();
 
         $loggedInUser = Auth::user();
 
-        $project = new Project();
+        if(!empty($newProjectPostedData)){
 
-        if(!$project->create([
-            'user_id' => $loggedInUser->id,
-            'name' => $newProjectPostedData['inputProjectName'],
-            'description' => $newProjectPostedData['inputProjectDescription'],
-            'amount' => $newProjectPostedData['inputProjectFunding'],
-            'project_category_id' => $newProjectPostedData['inputCategorySelect'],
-        ])){
-            die('fucked out');
-        } else {
-            return view('welcome');
+
+            if(!$project->update([
+                'user_id' => $loggedInUser->id,
+                'name' => $newProjectPostedData['inputProjectName'],
+                'description' => $newProjectPostedData['inputProjectDescription'],
+                'amount' => $newProjectPostedData['inputProjectFunding'],
+                'project_category_id' => $newProjectPostedData['inputCategorySelect'],
+            ]));
+
+            return redirect('/projects');
         }
-    }
-    
-    public function editProject(
 
-    ) {
-        
+        return view('projects.create', [
+            'heading' => 'Edit',
+            'projectName' => $project->name,
+            'projectDescription' => $project->description,
+            'projectFunding' => $project->amount,
+            'projectCategories' => ProjectCategory::all()
+        ]);
     }
 
     /**
-     * Delete project
+     * Delete project.
      *
-     * @param $projectId
+     * @param $id
      */
-    public function deleteProject($projectId) {
+    public function deleteProject($id) {
 
     }
 }

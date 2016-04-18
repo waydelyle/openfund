@@ -1,9 +1,11 @@
-<?php
-
-namespace App;
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class RecordStatus
+ * @package App
+ */
 class RecordStatus extends Model
 {
     /**
