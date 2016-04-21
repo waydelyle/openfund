@@ -4,7 +4,7 @@
 <!-- Page Content -->
 <div class="container">
 
-    <form class="form-horizontal" method="POST" action="/create-project">
+    <form class="form-horizontal" method="POST" action="/create">
             <legend><?= $heading ?></legend>
 
         {{ csrf_field() }}
