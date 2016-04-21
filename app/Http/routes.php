@@ -34,7 +34,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('edit-project', 'ProjectController@editProject');
     Route::get('delete-project', 'ProjectController@deleteProject');
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'IndexController@index');
 });
