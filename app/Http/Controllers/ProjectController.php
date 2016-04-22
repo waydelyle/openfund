@@ -29,6 +29,10 @@ class ProjectController extends Controller
         $postedProjectData = $request->all();
         $loggedInUser = Auth::user();
 
+        if ($loggedInUser == null) {
+            return redirect('auth/register');
+        }
+
         if(!empty($postedProjectData)){
 
             $project = new Project();
