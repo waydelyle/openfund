@@ -16,25 +16,15 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Browse Projects</a></li>
                 <li><a href="/create">Create Your Own</a></li>
+                @if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Messages <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Inbox</a></li>
                         <li><a href="#">Send Message</a></li>
-                        <!-- <li class="divider"></li>
-                        <li><a href="#">Delete Project</a></li> -->
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/create">Create Project</a></li>
-                        <li><a href="/edit">Edit Project</a></li>
-                        <li><a href="#">View Project</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Delete Project</a></li>
-                    </ul>
-                </li>
+                @endif
             </ul>
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -50,6 +40,7 @@
                     <li><a href="/auth/login">Login</a></li>
                     <li><a href="/auth/register">Register</a></li>
                 @else
+                    <li><a href="home">Home</a></li>
                     <li><a href="/auth/logout">Logout</a></li>
                 @endif
             </ul>

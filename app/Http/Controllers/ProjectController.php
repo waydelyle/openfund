@@ -15,7 +15,8 @@ class ProjectController extends Controller
     public function index(){
         $loggedInUser = Auth::user();
 
-        $projectsByUserId = Project::byUserId($loggedInUser->id)->findAll();
+        //$projectsByUserId = Project::ByUserId($loggedInUser->id)->findAll();
+        $projectsByUserId = Project::ByUserId($loggedInUser->id)->get();
 
         return view('projects.index', ['projects' => $projectsByUserId]);
     }

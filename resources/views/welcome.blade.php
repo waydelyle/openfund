@@ -2,7 +2,7 @@
 
 @section('content')
         <!-- Page Content -->
-@if(count($projects) > 0)
+@if(!empty($projects))
     <div class="container">
         <div class="row">
             @foreach($projects as $project)
