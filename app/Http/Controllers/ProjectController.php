@@ -15,7 +15,8 @@ class ProjectController extends Controller
     public function index(){
         $loggedInUser = Auth::user();
 
-        $projectsByUserId = Project::byUserId($loggedInUser->id)->findAll();
+        //$projectsByUserId = Project::ByUserId($loggedInUser->id)->findAll();
+        $projectsByUserId = Project::ByUserId($loggedInUser->id)->get();
 
         return view('projects.index', ['projects' => $projectsByUserId]);
     }
@@ -28,6 +29,10 @@ class ProjectController extends Controller
     public function create(Request $request) {
         $postedProjectData = $request->all();
         $loggedInUser = Auth::user();
+
+        if ($loggedInUser == null) {
+            return redirect('auth/register');
+        }
 
         if(!empty($postedProjectData)){
 
