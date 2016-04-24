@@ -26,16 +26,22 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
     Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
-    // Project routes...
-    Route::get('projects', 'ProjectController@index');
-    Route::get('create', 'ProjectController@create');
-    Route::post('create', 'ProjectController@create');
-    Route::get('edit', 'ProjectController@edit');
-    Route::get('edit-project', 'ProjectController@editProject');
-    Route::get('delete-project', 'ProjectController@deleteProject');
+
+
+    Route::group(['middleware' => ['auth']], function () {
+
+        // Project routes...
+        Route::get('projects', 'ProjectController@index');
+        Route::get('create', 'ProjectController@create');
+        Route::post('create', 'ProjectController@create');
+        Route::get('edit', 'ProjectController@edit');
+        Route::get('edit-project', 'ProjectController@editProject');
+        Route::get('delete-project', 'ProjectController@deleteProject');
+    });
 
     // User routes
     Route::get('home', 'UserController@index');
 
-    Route::get('/', 'IndexController@index');
+    Route::get('/', 'ProjectController@displayAllProjects');
+    Route::get('{category}/projects/', 'ProjectController@displayAllProjects');
 });

@@ -4,33 +4,33 @@
 <!-- Page Content -->
 <div class="container">
 
+    <fieldset>
     <form class="form-horizontal" method="POST" action="/create">
-            <legend><?= $heading ?></legend>
-
-        {{ csrf_field() }}
+            <legend>{{ $heading }}?></legend>
+            {{ csrf_field() }}
           <div class="form-group">
-                <label for="inputProjectName" class="col-lg-2 control-label">Name</label>
+                <label for="name" class="col-lg-2 control-label">Name</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="inputProjectName" id="inputProjectName" placeholder="Project Name">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Project Name">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputProjectDescription" class="col-lg-2 control-label">Description</label>
+                <label for="description" class="col-lg-2 control-label">Description</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" name="inputProjectDescription" id="inputProjectDescription"
+                    <textarea class="form-control" name="description" id="description"
                               placeholder="Project Description" rows="4" cols="50"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputProjectFunding" class="col-lg-2 control-label">Funding</label>
+                <label for="amount" class="col-lg-2 control-label">Funding</label>
                 <div class="col-lg-10">
-                    <input type="number" class="form-control" name="inputProjectFunding" id="inputProjectFunding" placeholder="R">
+                    <input type="number" class="form-control" name="amount" id="amount" placeholder="R">
                 </div>
             </div>
             <div class="form-group">
                 <label for="select" class="col-lg-2 control-label">Category</label>
                 <div class="col-lg-10">
-                    <select class="form-control" name="inputCategorySelect" id="inputCategorySelect">
+                    <select class="form-control" name="project_category_id" id="project_category_id">
                         @foreach($projectCategories as $category)
                         <option value="{{ $category->id }}">{{ $category->label }}</option>
                         @endforeach
@@ -44,7 +44,7 @@
                 </div>
             </div>
     </form>
-
+    </fieldset>
 </div>
 <!-- /.container -->
 @endsection

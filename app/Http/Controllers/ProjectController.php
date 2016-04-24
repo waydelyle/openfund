@@ -1,12 +1,33 @@
 <?php namespace App\Http\Controllers;
 
 use Auth;
+use Validator;
 use App\Project;
 use App\ProjectCategory;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    /**
+     * Displays all projects or projects by category.
+     *
+     * @param null $projectCategorySlug
+     * @return mixed
+     */
+    public function displayAllProjects($projectCategorySlug = null){
+        $projectCategoryBySlug = ProjectCategory::BySlug($projectCategorySlug)->first();
+
+        if(!empty($projectCategoryBySlug)) {
+            $projects = Project::ByProjectCategoryId($projectCategoryBySlug->id)->get();
+        }
+
+        if(empty($projects)){
+            $projects = Project::all();
+        }
+
+        return view('welcome', ['projects' => $projects]);
+    }
+
     /**
      * Display all projects for the current logged in user.
      *
@@ -27,26 +48,33 @@ class ProjectController extends Controller
      * @param Request $request
      */
     public function create(Request $request) {
-        $postedProjectData = $request->all();
+        $input = $request->all();
         $loggedInUser = Auth::user();
 
         if ($loggedInUser == null) {
             return redirect('auth/register');
         }
 
-        if(!empty($postedProjectData)){
+        $validator = Validator::make($input, Project::validationArray());
 
+        if($validator->fails()) {
+            return redirect("/project/create")
+                ->withErrors($validator)
+                ->withInput($input);
+        }
+
+        if(!empty($input)){
             $project = new Project();
 
-            if(!$project->create([
+            $project->create([
                 'user_id' => $loggedInUser->id,
-                'name' => $postedProjectData['inputProjectName'],
-                'description' => $postedProjectData['inputProjectDescription'],
-                'amount' => $postedProjectData['inputProjectFunding'],
-                'project_category_id' => $postedProjectData['inputCategorySelect'],
-            ]));
+                'name' => $input['name'],
+                'description' => $input['description'],
+                'amount' => $input['amount'],
+                'project_category_id' => $input['project_category_id'],
+            ]);
 
-            return redirect('/projects');
+            return redirect("/project/$project->id");
         }
 
         return view('projects.create', [
@@ -65,22 +93,29 @@ class ProjectController extends Controller
     public function edit(Request $request, $id) {
         $project = Project::find($id);
 
-        $newProjectPostedData = $request->all();
+        $input = $request->all();
 
         $loggedInUser = Auth::user();
 
-        if(!empty($newProjectPostedData)){
 
+        $validator = Validator::make($input, Project::validationArray());
 
-            if(!$project->update([
+        if($validator->fails()) {
+            return redirect("/project/create")
+                ->withErrors($validator)
+                ->withInput($input);
+        }
+
+        if(!empty($input)){
+            $project->update([
                 'user_id' => $loggedInUser->id,
-                'name' => $newProjectPostedData['inputProjectName'],
-                'description' => $newProjectPostedData['inputProjectDescription'],
-                'amount' => $newProjectPostedData['inputProjectFunding'],
-                'project_category_id' => $newProjectPostedData['inputCategorySelect'],
-            ]));
+                'name' => $input['name'],
+                'description' => $input['description'],
+                'amount' => $input['amount'],
+                'project_category_id' => $input['project_category_id'],
+            ]);
 
-            return redirect('/projects');
+            return redirect("/project/$id");
         }
 
         return view('projects.create', [
@@ -98,6 +133,6 @@ class ProjectController extends Controller
      * @param $id
      */
     public function deleteProject($id) {
-
+        //this should be a soft delete that sets the record status to 2
     }
 }

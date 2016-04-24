@@ -24,6 +24,16 @@ class Project extends Model
         'name', 'user_id', 'project_category_id', 'description', 'amount', 'project_status_id', 'funding_status_id',
     ];
 
+    public static function validationArray(){
+        return [
+            'name' => 'required|max:255',
+            'user_id' => 'required|int|max:255',
+            'project_category_id' => 'required|int|max:255',
+            'description' => 'required|max:255',
+            'amount' => 'required|int|max:255',
+        ];
+    }
+
     /**
      * @param $query
      * @param $id
