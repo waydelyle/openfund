@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-<!-- resources/views/auth/login.blade.php -->
+        <!-- resources/views/auth/login.blade.php -->
 <div class="container">
     <div class="col-lg-10">
-        <form class="form-horizontal" method="POST" action="/auth/login">
-            {!! csrf_field() !!}
+        <fieldset>
+            <form class="form-horizontal" method="POST" action="/auth/login">
+                {!! csrf_field() !!}
 
-            <fieldset>
                 <legend align="center">Log In</legend>
                 <div class="form-group">
                     <label for="email" class="col-lg-2 control-label">Email</label>
@@ -29,10 +29,11 @@
 
                 <div class="form-group" align="center">
                     <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="right"
-                            title="Log in to your account">Login</button>
+                            title="Log in to your account">Login
+                    </button>
                 </div>
-            </fieldset>
-        </form>
+            </form>
+        </fieldset>
     </div>
 </div>
 @endsection
