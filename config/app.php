@@ -160,7 +160,14 @@ return [
          * Socialite Service Provider
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
-        
+
+        /*
+         * OpenFund Service Providers
+         */
+        App\Providers\ProjectModuleServiceProvider::class,
+        App\Providers\FormModuleServiceProvider::class,
+        App\Providers\UserModuleServiceProvider::class,
+
     ],
 
     /*
@@ -207,6 +214,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        /*
+         * OpenFund aliases
+         */
+        'ProjectModule' => App\Facades\ProjectModule::class,
+        'FormModule' => App\Facades\FormModule::class,
+        'UserModule' => App\Facades\UserModule::class,
 
     ],
 

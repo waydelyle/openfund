@@ -1,6 +1,6 @@
  <div class="col-md-4">
     <div class="thumbnail">
-        <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+        <img class="img-responsive" src="http://placehold.it/800x300" alt="{{ $project->name }}">
         <div class="caption-full">
             <h4 class="pull-right">{{ $project->amount }}</h4>
             <h4><a href="/edit-project/{{ $project->id }}">{{ $project->name }}</a>

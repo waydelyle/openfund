@@ -1,4 +1,4 @@
-@if(!empty($projects))
+@if(!empty($projects[0]))
     @foreach($projects as $project)
         <div class="col-md-4">
 
@@ -17,4 +17,17 @@
             </div>
         </div>
     @endforeach
+@else
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h4>
+                    There are currently no active
+                    @if(!empty($category)) {{ $category->name }} @endif
+                    projects, <a href="/create">create one</a> and be the first!
+                </h4>
+
+            </div>
+        </div>
+    </div>
 @endif
