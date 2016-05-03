@@ -32,6 +32,11 @@ class ProjectController extends Controller
         return view('projects.index', ['projects' => $projectsByUserId]);
     }
 
+    public function createProject()
+    {
+        return view('projects/create');
+    }
+
     /**
      * Insert project data into database.
      *
