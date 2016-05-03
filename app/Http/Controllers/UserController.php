@@ -1,8 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+<?php namespace App\Http\Controllers;
 
 use Auth;
 use App\Http\Requests;
@@ -15,8 +11,15 @@ class UserController extends Controller
      * @return mixed
      */
     public function index(){
-        $loggedInUser = Auth::user();
+        return view('user.index');
+    }
 
-        return view('user.index', ['user' => $loggedInUser]);
+    /**
+     * Direct the user to create & edit their profile.
+     *
+     */
+    public function profile(){
+
+        return view('user.profile');
     }
 }
