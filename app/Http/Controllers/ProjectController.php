@@ -55,15 +55,16 @@ class ProjectController extends Controller
             return redirect('auth/register');
         }
 
-        $validator = Validator::make($input, Project::validationArray());
-
-        if($validator->fails()) {
-            return redirect("/project/create")
-                ->withErrors($validator)
-                ->withInput($input);
-        }
-
         if(!empty($input)){
+
+            $validator = Validator::make($input, Project::validationArray());
+
+            if($validator->fails()) {
+                return redirect("/create")
+                    ->withErrors($validator)
+                    ->withInput($input);
+            }
+
             $project = new Project();
 
             $project->create([
@@ -74,7 +75,7 @@ class ProjectController extends Controller
                 'project_category_id' => $input['project_category_id'],
             ]);
 
-            return redirect("/project/$project->id");
+            return redirect("/$project->id");
         }
 
         return view('projects.create', [
@@ -97,16 +98,16 @@ class ProjectController extends Controller
 
         $loggedInUser = Auth::user();
 
-
-        $validator = Validator::make($input, Project::validationArray());
-
-        if($validator->fails()) {
-            return redirect("/project/create")
-                ->withErrors($validator)
-                ->withInput($input);
-        }
-
         if(!empty($input)){
+
+            $validator = Validator::make($input, Project::validationArray());
+
+            if($validator->fails()) {
+                return redirect("/create")
+                    ->withErrors($validator)
+                    ->withInput($input);
+            }
+
             $project->update([
                 'user_id' => $loggedInUser->id,
                 'name' => $input['name'],
@@ -115,7 +116,7 @@ class ProjectController extends Controller
                 'project_category_id' => $input['project_category_id'],
             ]);
 
-            return redirect("/project/$id");
+            return redirect("/$id");
         }
 
         return view('projects.create', [
