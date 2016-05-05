@@ -6,7 +6,7 @@
                 <img class="img-responsive" src="http://placehold.it/800x300" alt="">
                 <div class="caption-full">
                     <h4 class="pull-right">{{ $project->amount }}</h4>
-                    <h4><a href="/edit-project/{{ $project->id }}">{{ $project->name }}</a>
+                    <h4><a href="/view-project/{{ $project->id }}">{{ $project->name }}</a>
                     </h4>
                     <p>{{ $project->description }}</p>
                 </div>

@@ -127,6 +127,13 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function view($id){
+        return view('projects.view', [
+            'heading' => 'View',
+            'projectId' => $id
+        ]);
+    }
+
     /**
      * Delete project.
      *

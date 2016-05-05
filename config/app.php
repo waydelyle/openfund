@@ -165,7 +165,6 @@ return [
          * OpenFund Service Providers
          */
         App\Providers\ProjectModuleServiceProvider::class,
-        App\Providers\FormModuleServiceProvider::class,
         App\Providers\UserModuleServiceProvider::class,
 
     ],
@@ -219,7 +218,6 @@ return [
          * OpenFund aliases
          */
         'ProjectModule' => App\Facades\ProjectModule::class,
-        'FormModule' => App\Facades\FormModule::class,
         'UserModule' => App\Facades\UserModule::class,
 
     ],

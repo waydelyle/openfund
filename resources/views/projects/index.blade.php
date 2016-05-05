@@ -5,9 +5,7 @@
     <div class="container">
 
         <div class="row">
-            {{
-            \App\Modules\ProjectModule::listProjects()
-            }}
+            {!! ProjectModule::listProjects(9, null, Auth::user()->id) !!}
         </div>
 
     </div>

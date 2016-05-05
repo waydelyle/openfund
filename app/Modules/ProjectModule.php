@@ -8,20 +8,29 @@ use App\ProjectCategory;
  */
 class ProjectModule {
 
+    const DEFAULT_LIST_AMOUNT = 9;
+
     /**
      * Renders a list of projects.
      *
      * @param int $listAmount
      * @param null $category
+     * @param int $userId
      * @return mixed
      */
-    public static function listProjects($listAmount = 9, $category = null)
+    public static function listProjects($listAmount = self::DEFAULT_LIST_AMOUNT, $category = null, $userId = null)
     {
+
 
         $projectCategory = null;
         if(!empty($category)){
             $projectCategory = ProjectCategory::BySlug($category)->first();
-            $projects = Project::ByProjectCategoryId($projectCategory->id)->get();
+
+            !empty($userId)
+                ? $projects = Project::ByProjectCategoryId($projectCategory->id)->ByUserId($userId)->get()
+                : $projects = Project::ByProjectCategoryId($projectCategory->id)->get();
+        } else if(!empty($userId)) {
+            $projects = Project::ByUserId($userId)->get();
         } else {
             $projects = Project::all();
         }

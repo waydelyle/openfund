@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">OpenFund</a>
+            <a class="navbar-brand" href="/">{{ env('SITE_NAME') }}</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -33,9 +33,6 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 @if(!Auth::check())
-                    <a href="/auth/facebook">
-                        <img border="0" alt="Facebook Login" src="{{ asset('/images/facebook_auth.png') }}">
-                    </a>
                     <li><a href="/auth/login">Login</a></li>
                     <li><a href="/auth/register">Register</a></li>
                 @else

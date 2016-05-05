@@ -6,7 +6,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p>{{ env('SITE_NAME') }} powered by <a href="https://github.com/waydelyle/openfund" title="OpenFund">OpenFund</a>.</p>
             </div>
         </div>
     </footer>

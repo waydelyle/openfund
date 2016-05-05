@@ -32,6 +32,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('create', 'ProjectController@create');
     Route::get('edit', 'ProjectController@edit');
     Route::get('edit-project', 'ProjectController@editProject');
+    Route::get('view-project/{id}', 'ProjectController@view');
     Route::get('delete-project', 'ProjectController@deleteProject');
 
     // User routes
