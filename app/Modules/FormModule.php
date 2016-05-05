@@ -33,6 +33,10 @@ class FormModule {
         return view('form.field', ['name' => $name, 'type' => $type, 'id' => $id, 'placeholder' => $placeholder]);
     }
 
+    public static function text(){
+        return view('form.field', ['name' => $name,'id' => $id, 'placeholder' => $placeholder]);
+    }
+
     /**
      * Renders the form close tag with submit button and OpenFund html structure.
      *
