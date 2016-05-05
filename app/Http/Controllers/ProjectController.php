@@ -56,30 +56,29 @@ class ProjectController extends Controller
         }
 
         if(!empty($input)){
-
             $validator = Validator::make($input, Project::validationArray());
 
             if($validator->fails()) {
-                return redirect("/create")
-                    ->withErrors($validator)
-                    ->withInput($input);
+                //todo wayde fix the errors and don't use this route
+                $errors = $validator->errors();
+            } else {
+                $project = new Project();
+
+                $project->create([
+                    'user_id' => $loggedInUser->id,
+                    'name' => $input['name'],
+                    'description' => $input['description'],
+                    'amount' => $input['amount'],
+                    'project_category_id' => $input['project_category_id'],
+                ]);
+
+                return redirect("/$project->id");
             }
-
-            $project = new Project();
-
-            $project->create([
-                'user_id' => $loggedInUser->id,
-                'name' => $input['name'],
-                'description' => $input['description'],
-                'amount' => $input['amount'],
-                'project_category_id' => $input['project_category_id'],
-            ]);
-
-            return redirect("/$project->id");
         }
 
         return view('projects.create', [
             'heading' => 'Create Project',
+            'errors' => isset($errors) ? $errors : null,
             'projectCategories' => ProjectCategory::all()
         ]);
     }
@@ -103,24 +102,24 @@ class ProjectController extends Controller
             $validator = Validator::make($input, Project::validationArray());
 
             if($validator->fails()) {
-                return redirect("/create")
-                    ->withErrors($validator)
-                    ->withInput($input);
+                //todo wayde fix the errors and don't use this route
+                $errors = $validator->errors();
+            } else {
+                $project->update([
+                    'user_id' => $loggedInUser->id,
+                    'name' => $input['name'],
+                    'description' => $input['description'],
+                    'amount' => $input['amount'],
+                    'project_category_id' => $input['project_category_id'],
+                ]);
+
+                return redirect("/$id");
             }
-
-            $project->update([
-                'user_id' => $loggedInUser->id,
-                'name' => $input['name'],
-                'description' => $input['description'],
-                'amount' => $input['amount'],
-                'project_category_id' => $input['project_category_id'],
-            ]);
-
-            return redirect("/$id");
         }
 
         return view('projects.create', [
             'heading' => 'Edit',
+            'errors' => isset($errors) ? $errors : null,
             'projectName' => $project->name,
             'projectDescription' => $project->description,
             'projectFunding' => $project->amount,

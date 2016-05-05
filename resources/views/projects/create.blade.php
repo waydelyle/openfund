@@ -3,11 +3,13 @@
 @section('content')
 <!-- Page Content -->
 <div class="container">
-
     <fieldset>
     <form class="form-horizontal" method="POST" action="/create">
-            <legend>{{ $heading }}?></legend>
+            <legend>{{ $heading }}</legend>
             {{ csrf_field() }}
+
+            @include('form.form-validation-errors', ['errors' => $errors])
+
           <div class="form-group">
                 <label for="name" class="col-lg-2 control-label">Name</label>
                 <div class="col-lg-10">

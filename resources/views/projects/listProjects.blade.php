@@ -5,6 +5,7 @@
             <h4><a href="/view-project/{{ $project->id }}">{{ $project->name }}</a></h4>
             <div class="thumbnail">
                 <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                <hr />
                 <p>{{ $project->description }}</p>
                 <a href="#"> Read More</a>
                 <h6>Funding Progress of {{ $project->amount }} needed.</h6>
