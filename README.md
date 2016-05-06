@@ -10,7 +10,7 @@ Any contributions are welcome and reviewed before merging into the main reposito
 
 We are a small team of developers working in our spare time to get this project off the ground. We are currently employed as developers at a development company based in Cape Town, South Africa.
 
-# Release date 25th August 2016
+# Release date 25th October 2016
 
 We are planning on having a working implementation ready for the public on the 25th of August 2016. This release should include all the basic functionality needed to run a crowdfunding website.
 
