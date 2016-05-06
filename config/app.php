@@ -167,6 +167,12 @@ return [
         App\Providers\ProjectModuleServiceProvider::class,
         App\Providers\UserModuleServiceProvider::class,
 
+        /*
+         * Additional Service Providers
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
+
     ],
 
     /*
@@ -219,6 +225,12 @@ return [
          */
         'ProjectModule' => App\Facades\ProjectModule::class,
         'UserModule' => App\Facades\UserModule::class,
+
+        /*
+         * Additional aliases
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

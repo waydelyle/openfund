@@ -13,7 +13,8 @@
           <div class="form-group">
                 <label for="name" class="col-lg-2 control-label">Name</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Project Name">
+                    {{--<input type="text" class="form-control" name="name" id="name" placeholder="Project Name">--}}
+                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' =>  'Project Name']) !!}
                 </div>
             </div>
             <div class="form-group">
