@@ -18,7 +18,7 @@
                 <div class="form-group">
                     {!! Form::label('description', 'Short description', ['class' => 'col-lg-2 control-label']) !!}
                     <div class="col-lg-10">
-                        {!! Form::textarea('name', old('description'), ['size' => '2x2', 'class' => 'form-control', 'maxlength' => 140]) !!}
+                        {!! Form::textarea('description', old('description'), ['size' => '2x2', 'class' => 'form-control', 'maxlength' => 140]) !!}
                     </div>
                 </div>
                 <div class="form-group">

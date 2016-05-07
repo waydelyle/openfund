@@ -1,50 +1,76 @@
 @extends('layouts.master')
 
+@section('scripts')
+    <script src="{{ asset('js/project-edit.js') }}"></script>
+@stop
+
 @section('content')
-<!-- Page Content -->
-<div class="container">
+    <!-- Page Content -->
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ $name }}</h3>
+            </div>
+            <div class="panel-body">
+            <div class="col-md-14 project-container">
+                <ul class="nav nav-pills">
+                    <li id="basic" class="active"><a href="#">Basic information</a></li>
+                    <li id="page" ><a href="#">Page setup</a></li>
+                    <li id="rewards" ><a href="#">Add rewards</a></li>
+                    <li id="fund" ><a href="#">Fund this</a></li>
+                </ul>
+                <hr />
 
-    <form class="form-horizontal">
-        <fieldset>
-            <legend>Edit project</legend>
-            <div class="form-group">
-                <label for="inputProjectName" class="col-lg-2 control-label">Project Name</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="inputProjectName" placeholder="Project Name">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputProjectDescription" class="col-lg-2 control-label">Project Description</label>
-                <div class="col-lg-10">
-                    <textarea class="form-control" id="inputProjectDescription"
-                              placeholder="Project Description" rows="4" cols="50"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputProjectFunding" class="col-lg-2 control-label">Project Funding</label>
-                <div class="col-lg-10">
-                    <input type="number" class="form-control" id="inputProjectFunding" placeholder="R">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="select" class="col-lg-2 control-label">Category</label>
-                <div class="col-lg-10">
-                    <select class="form-control" id="select">
-                        @foreach($projectCategories as $project)
-                            <option><?= $project->label ?></option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <button type="reset" class="btn btn-default">Cancel</button>
-                    <button href="" type="submit" class="btn btn-primary">Create</button>
-                </div>
-            </div>
-        </fieldset>
-    </form>
+                    <div class="basic">
+                        <fieldset>
+                            {!! Form::open(array('url' => 'create', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+                            <legend>{{ $heading }}</legend>
 
-</div>
-<!-- /.container -->
+                            @include('form.form-validation-errors', ['errors' => !empty($errors) ? $errors : 0])
+
+                            <div class="form-group">
+                                {!! Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) !!}
+                                <div class="col-lg-10">
+                                    {!! Form::text('name', $name, ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('description', 'Short description', ['class' => 'col-lg-2 control-label']) !!}
+                                <div class="col-lg-10">
+                                    {!! Form::textarea('description', $description, ['size' => '2x2', 'class' => 'form-control', 'maxlength' => 140]) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('amount', 'Funding needed', ['class' => 'col-lg-2 control-label']) !!}
+                                <div class="col-lg-10">
+                                    {!! Form::number('amount', $amount, ['class' => 'form-control', 'placeholder' =>  'R']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('project_category_id', 'Category', ['class' => 'col-lg-2 control-label']) !!}
+                                <div class="col-lg-10">
+                                    {!! Form::select('project_category_id', $projectCategories, $projectCategoryId, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                    </div>
+                    <div class="page">
+
+                    </div>
+                    <div class="rewards">
+
+                    </div>
+
+            </div>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        {!! Form::reset('Reset all', ['class' => 'btn btn-default']) !!}
+                        {!! Form::submit('Submit for review', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                </div>
+                {!! Form::close() !!}
+                </fieldset>
+        </div>
+    </div>
+    <!-- /.container -->
 @endsection

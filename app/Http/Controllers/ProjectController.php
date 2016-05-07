@@ -54,15 +54,15 @@ class ProjectController extends Controller
             } else {
                 $project = new Project();
 
-                $project->create([
+                $projectId = $project->create([
                     'user_id' => $loggedInUser->id,
                     'name' => $input['name'],
                     'description' => $input['description'],
                     'amount' => $input['amount'],
                     'project_category_id' => $input['project_category_id'],
-                ]);
+                ])->id;
 
-                return redirect("/$project->id");
+                return redirect("/edit-project/$projectId");
             }
         }
 
@@ -81,38 +81,16 @@ class ProjectController extends Controller
      * @return mixed
      */
     public function edit(Request $request, $id) {
+
         $project = Project::find($id);
 
-        $input = $request->all();
-
-        $loggedInUser = Auth::user();
-
-        if(!empty($input)){
-
-            $validator = Validator::make($input, Project::validationArray());
-
-            if($validator->fails()) {
-                //todo wayde fix the errors and don't use this route
-                $errors = $validator->errors();
-            } else {
-                $project->update([
-                    'user_id' => $loggedInUser->id,
-                    'name' => $input['name'],
-                    'description' => $input['description'],
-                    'amount' => $input['amount'],
-                    'project_category_id' => $input['project_category_id'],
-                ]);
-
-                return redirect("/$id");
-            }
-        }
-
-        return view('projects.create', [
-            'heading' => 'Edit',
+        return view('projects.edit', [
+            'heading' => 'Setup Project',
             'errors' => isset($errors) ? $errors : null,
-            'projectName' => $project->name,
-            'projectDescription' => $project->description,
-            'projectFunding' => $project->amount,
+            'name' => $project->name,
+            'description' => $project->description,
+            'amount' => $project->amount,
+            'projectCategoryId' => $project->project_category_id,
             'projectCategories' => ProjectCategory::lists('label', 'id')
         ]);
     }
