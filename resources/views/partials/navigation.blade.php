@@ -26,12 +26,13 @@
                 </li>
                 @endif
             </ul>
-            <form class="navbar-form navbar-left" role="search">
+            {!! Form::open(array('url' => 'search', 'method' => 'post', 'class' => 'navbar-form navbar-right')) !!}
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    {!! Form::text('search', old('search'), ['class' => 'form-control', 'placeholder' =>  'Search']) !!}
+
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+                {!! Form::submit(' &#9654; ', ['class' => 'btn btn-default']) !!}
+            {!! Form::close() !!}
             <ul class="nav navbar-nav navbar-right">
                 @if(!Auth::check())
                     <li><a href="/auth/login">Login</a></li>

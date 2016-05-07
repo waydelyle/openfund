@@ -124,6 +124,12 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function search(Request $request){
+        $foundProjects = Project::where('name', 'like', '%' . $request->get('search') . '%')->get();
+
+        return view('projects.search', ['projects' => $foundProjects]);
+    }
+
     /**
      * Delete project.
      *
