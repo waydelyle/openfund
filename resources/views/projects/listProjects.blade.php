@@ -3,10 +3,9 @@
         <div class="col-md-4">
 
             <h4><a href="/view-project/{{ $project->id }}">{{ $project->name }}</a></h4>
-            <span class="label label-default">Art</span>
-            {{--<span class="label label-default">{{ $project->project_category_id }}</span>--}}
+            <a href="/{{ $project->category->slug }}/projects"><span class="label label-default">{{ $project->category->label }}</span></a>
             {{--@if($percentFunded == 100)--}}
-            <span class="label label-success">Funded</span>
+            {{--<span class="label label-success">{{ $project->projectStatus->label }}</span>--}}
             {{--@endif--}}
             <div class="thumbnail">
                 <img class="img-responsive" src="http://placehold.it/800x300" alt="">

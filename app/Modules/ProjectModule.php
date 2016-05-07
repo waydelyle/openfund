@@ -20,8 +20,6 @@ class ProjectModule {
      */
     public static function listProjects($listAmount = self::DEFAULT_LIST_AMOUNT, $category = null, $userId = null)
     {
-
-
         $projectCategory = null;
         if(!empty($category)){
             $projectCategory = ProjectCategory::BySlug($category)->first();
@@ -64,8 +62,7 @@ class ProjectModule {
      */
     public static function percentFunded($amountFunded, $amountNeeded)
     {
-        $percentFunded = $amountNeeded - $amountFunded;
-        $percentFunded = 50;
+        $percentFunded = ($amountFunded / $amountNeeded) * 100;
 
         return (int) $percentFunded;
     }

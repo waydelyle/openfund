@@ -15,17 +15,7 @@ class ProjectController extends Controller
      * @return mixed
      */
     public function displayAllProjects($projectCategorySlug = null){
-        $projectCategoryBySlug = ProjectCategory::BySlug($projectCategorySlug)->first();
-
-        if(!empty($projectCategoryBySlug)) {
-            $projects = Project::ByProjectCategoryId($projectCategoryBySlug->id)->get();
-        }
-
-        if(empty($projects)){
-            $projects = Project::all();
-        }
-
-        return view('welcome', ['projects' => $projects]);
+        return view('welcome', ['projectCategorySlug' => $projectCategorySlug]);
     }
 
     /**
@@ -79,7 +69,7 @@ class ProjectController extends Controller
         return view('projects.create', [
             'heading' => 'Create Project',
             'errors' => isset($errors) ? $errors : null,
-            'projectCategories' => ProjectCategory::all()
+            'projectCategories' => ProjectCategory::lists('label', 'id')
         ]);
     }
 
@@ -123,7 +113,7 @@ class ProjectController extends Controller
             'projectName' => $project->name,
             'projectDescription' => $project->description,
             'projectFunding' => $project->amount,
-            'projectCategories' => ProjectCategory::all()
+            'projectCategories' => ProjectCategory::lists('label', 'id')
         ]);
     }
 

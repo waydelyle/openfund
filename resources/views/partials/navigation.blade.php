@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -19,10 +19,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Messages <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Inbox</a></li>
+                        <li><a href="#">Inbox</a>
+                        <span class="badge">3</span></li>
                         <li><a href="#">Send Message</a></li>
                     </ul>
                 </li>
+                <li><a href="#">Notifications <span class="badge">3</span></a></li>
                 @endif
             </ul>
             <form class="navbar-form navbar-left" role="search">

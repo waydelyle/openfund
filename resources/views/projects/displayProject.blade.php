@@ -28,10 +28,17 @@
 
     </div>
     <hr />
-
-    <h4>Funding Progress of {{ $project->amount }} needed.</h4>
+    @if($percentFunded == 100)
+        <h4 align="center">This project has been successfully funded.</h4>
+    @else
+        <h4>Funding Progress of {{ $project->amount }} needed.</h4>
+    @endif
     <div class="progress progress-striped active">
         {{--{{ //todo wayde render different bars depending on percentage funded. }}--}}
-        <div class="progress-bar" style="width: {{ $percentFunded }}%"></div>
+        @if($percentFunded == 100)
+            <div class="progress-bar progress-bar-success" style="width: {{ $percentFunded }}%"></div>
+        @else
+            <div class="progress-bar" style="width: {{ $percentFunded }}%"></div>
+        @endif
     </div>
 </div>

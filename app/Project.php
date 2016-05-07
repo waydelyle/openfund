@@ -24,16 +24,21 @@ class Project extends Model
         'name', 'user_id', 'project_category_id', 'description', 'amount', 'project_status_id', 'funding_status_id',
     ];
 
+    /**
+     * @return array
+     */
     public static function validationArray(){
         return [
-            'name' => 'required|max:255',
-            'project_category_id' => 'required|int|max:255',
-            'description' => 'required|max:255',
-            'amount' => 'required|int|max:50000',
+            'name' => 'required|unique:projects|max:30',
+            'project_category_id' => 'required|int|max:2',
+            'description' => 'required|max:140',
+            'amount' => 'required|int',
         ];
     }
 
     /**
+     * Usage example Project::ByUserId($userId)->get();
+     *
      * @param $query
      * @param $id
      * @return mixed
@@ -44,6 +49,8 @@ class Project extends Model
     }
 
     /**
+     * Usage example Project::ByProjectCategoryId($categoryId)->get();
+     *
      * @param $query
      * @param $id
      * @return mixed
@@ -54,6 +61,8 @@ class Project extends Model
     }
 
     /**
+     *  Usage example Project::ByProjectStatusId($projectId)->get();
+     *
      * @param $query
      * @param $id
      * @return mixed
@@ -71,5 +80,29 @@ class Project extends Model
     public function scopeByFundingStatusId($query, $id)
     {
         return $query->where('funding_status_id', $id);
+    }
+
+    /**
+     * Get the project status related to this project.
+     */
+    public function projectStatus()
+    {
+        return $this->belongsTo('App\ProjectStatus', 'project_status_id');
+    }
+
+    /**
+     * Get the funding status related to this project.
+     */
+    public function fundingStatus()
+    {
+        return $this->belongsTo('App\FundingStatus', 'funding_status_id');
+    }
+
+    /**
+     * Get the category related to this project.
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\ProjectCategory', 'project_category_id');
     }
 }

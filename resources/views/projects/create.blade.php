@@ -1,53 +1,46 @@
 @extends('layouts.master')
 
 @section('content')
-<!-- Page Content -->
-<div class="container">
-    <fieldset>
-    <form class="form-horizontal" method="POST" action="/create">
-            <legend>{{ $heading }}</legend>
-            {{ csrf_field() }}
+    <!-- Page Content -->
+    <div class="container">
+        <fieldset>
+        {!! Form::open(array('url' => 'create', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+                <legend>{{ $heading }}</legend>
 
-            @include('form.form-validation-errors', ['errors' => $errors])
+                @include('form.form-validation-errors', ['errors' => !empty($errors) ? $errors : 0])
 
-          <div class="form-group">
-                <label for="name" class="col-lg-2 control-label">Name</label>
-                <div class="col-lg-10">
-                    {{--<input type="text" class="form-control" name="name" id="name" placeholder="Project Name">--}}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' =>  'Project Name']) !!}
+              <div class="form-group">
+                    {!! Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) !!}
+                    <div class="col-lg-10">
+                        {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' =>  'Project Name']) !!}
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="description" class="col-lg-2 control-label">Description</label>
-                <div class="col-lg-10">
-                    <textarea class="form-control" name="description" id="description"
-                              placeholder="Project Description" rows="4" cols="50"></textarea>
+                <div class="form-group">
+                    {!! Form::label('description', 'Short description', ['class' => 'col-lg-2 control-label']) !!}
+                    <div class="col-lg-10">
+                        {!! Form::textarea('name', old('description'), ['size' => '2x2', 'class' => 'form-control', 'maxlength' => 140]) !!}
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="amount" class="col-lg-2 control-label">Funding</label>
-                <div class="col-lg-10">
-                    <input type="number" class="form-control" name="amount" id="amount" placeholder="R">
+                <div class="form-group">
+                    {!! Form::label('amount', 'Funding needed', ['class' => 'col-lg-2 control-label']) !!}
+                    <div class="col-lg-10">
+                        {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' =>  'R']) !!}
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="select" class="col-lg-2 control-label">Category</label>
-                <div class="col-lg-10">
-                    <select class="form-control" name="project_category_id" id="project_category_id">
-                        @foreach($projectCategories as $category)
-                        <option value="{{ $category->id }}">{{ $category->label }}</option>
-                        @endforeach
-                    </select>
+                <div class="form-group">
+                    {!! Form::label('project_category_id', 'Category', ['class' => 'col-lg-2 control-label']) !!}
+                    <div class="col-lg-10">
+                        {!! Form::select('project_category_id', $projectCategories, array('class' => 'form-control')) !!}
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <button type="reset" class="btn btn-default">Reset</button>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        {!! Form::reset('Reset', ['class' => 'btn btn-default']) !!}
+                        {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
+                    </div>
                 </div>
-            </div>
-    </form>
-    </fieldset>
-</div>
-<!-- /.container -->
+            {!! Form::close() !!}
+        </fieldset>
+    </div>
+    <!-- /.container -->
 @endsection
