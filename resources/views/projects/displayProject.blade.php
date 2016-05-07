@@ -2,9 +2,14 @@
     <script src="{{ asset('js/project-display.js') }}"></script>
 @stop
 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ $project->name }}</h3>
+    </div>
+    <div class="panel-body">
 <div class="col-md-14 project-container">
 
-    <h1>{{ $project->name }}</h1>
+
      <ul class="nav nav-pills">
          <li id="overview" class="active"><a href="#">Overview</a></li>
          <li id="about" ><a href="#">About</a></li>
@@ -41,4 +46,8 @@
             <div class="progress-bar" style="width: {{ $percentFunded }}%"></div>
         @endif
     </div>
+</div>
+
+
+</div>
 </div>

@@ -13,7 +13,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-                <li><a href="/">Browse Projects</a></li>
+                {!! ProjectModule::renderNavigationDropDown() !!}
                 <li><a href="/create">Create Your Own</a></li>
                 @if(Auth::check())
                 <li class="dropdown">
@@ -24,7 +24,6 @@
                         <li><a href="#">Send Message</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Notifications <span class="badge">3</span></a></li>
                 @endif
             </ul>
             <form class="navbar-form navbar-left" role="search">

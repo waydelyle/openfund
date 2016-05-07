@@ -1,7 +1,6 @@
 @if(!empty($projects[0]))
     @foreach($projects as $project)
         <div class="col-md-4">
-
             <h4><a href="/view-project/{{ $project->id }}">{{ $project->name }}</a></h4>
             <a href="/{{ $project->category->slug }}/projects"><span class="label label-default">{{ $project->category->label }}</span></a>
             {{--@if($percentFunded == 100)--}}

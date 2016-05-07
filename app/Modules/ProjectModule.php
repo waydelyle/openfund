@@ -66,4 +66,10 @@ class ProjectModule {
 
         return (int) $percentFunded;
     }
+
+    public static function renderNavigationDropDown(){
+        $categories = ProjectCategory::all();
+        
+        return view('partials.project-navigation-dropdown', ['categories' => $categories]);
+    }
 }
