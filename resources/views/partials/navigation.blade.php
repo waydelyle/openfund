@@ -17,11 +17,10 @@
                 <li><a href="/create">Create Your Own</a></li>
                 @if(Auth::check())
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Messages <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dashboard <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Inbox</a>
-                        <span class="badge">3</span></li>
-                        <li><a href="#">Send Message</a></li>
+                        <li><a href="/my-projects">My Projects</a></li>
+                        <li><a href="/message">Messages</a></li>
                     </ul>
                 </li>
                 @endif
@@ -38,7 +37,7 @@
                     <li><a href="/auth/login">Login</a></li>
                     <li><a href="/auth/register">Register</a></li>
                 @else
-                    <li><a href="home">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="/auth/logout">Logout</a></li>
                 @endif
             </ul>

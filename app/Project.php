@@ -30,7 +30,7 @@ class Project extends Model
     public static function validationArray(){
         return [
             'name' => 'required|unique:projects|max:30',
-            'project_category_id' => 'required|int|max:2',
+            'project_category_id' => 'required|int|max:50',
             'description' => 'required|max:140',
             'amount' => 'required|int',
         ];

@@ -33,7 +33,7 @@ class ProjectModule {
             $projects = Project::all();
         }
 
-        return view('projects.listProjects', ['projects' => $projects, 'category', $projectCategory]);
+        return view('projects.list-projects', ['projects' => $projects, 'category', $projectCategory]);
     }
 
     /**
@@ -52,7 +52,7 @@ class ProjectModule {
 
         $percentFunded = self::percentFunded($project->amount, $project->amount);
 
-        return view('projects.displayProject', ['project' => $project, 'percentFunded' => $percentFunded]);
+        return view('projects.display-project', ['project' => $project, 'percentFunded' => $percentFunded]);
     }
 
     /**

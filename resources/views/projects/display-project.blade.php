@@ -32,11 +32,11 @@
 
             </div>
             <hr />
-            @if($percentFunded == 100)
-                <h4 align="center">This project has been successfully funded.</h4>
-            @else
-                <h4>Funding Progress of {{ $project->amount }} needed.</h4>
-            @endif
+                @if($percentFunded == 100)
+                    <h4 align="center">This project has been successfully funded.</h4>
+                @else
+                    <h4>Funding Progress of {{ $project->amount }} needed.</h4>
+                @endif
             <div class="progress progress-striped active">
                 @if($percentFunded == 100)
                     <div class="progress-bar progress-bar-success" style="width: {{ $percentFunded }}%"></div>

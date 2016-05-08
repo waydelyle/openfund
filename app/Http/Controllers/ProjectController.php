@@ -24,12 +24,9 @@ class ProjectController extends Controller
      * @return mixed
      */
     public function index(){
-        $loggedInUser = Auth::user();
+        $projects = Project::all();
 
-        //$projectsByUserId = Project::ByUserId($loggedInUser->id)->findAll();
-        $projectsByUserId = Project::ByUserId($loggedInUser->id)->get();
-
-        return view('projects.index', ['projects' => $projectsByUserId]);
+        return view('projects.list-projects', ['projects' => $projects]);
     }
 
     /**
@@ -95,6 +92,10 @@ class ProjectController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function view($id){
         return view('projects.view', [
             'heading' => 'View',
@@ -102,10 +103,16 @@ class ProjectController extends Controller
         ]);
     }
 
+    /**
+     * Enables search by project.name.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function search(Request $request){
         $foundProjects = Project::where('name', 'like', '%' . $request->get('search') . '%')->get();
 
-        return view('projects.search', ['projects' => $foundProjects]);
+        return view('projects.list-projects', ['projects' => $foundProjects]);
     }
 
     /**
@@ -115,5 +122,16 @@ class ProjectController extends Controller
      */
     public function deleteProject($id) {
         //this should be a soft delete that sets the record status to 2
+    }
+
+    /**
+     * Displays projects available to edit.
+     *
+     * @return mixed
+     */
+    public function myProjects(){
+        $projects = Project::ByUserId(Auth::user()->id)->get();
+
+        return view('projects.list-projects', ['projects', $projects]);
     }
 }
