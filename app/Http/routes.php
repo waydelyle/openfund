@@ -36,8 +36,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('delete-project', 'ProjectController@deleteProject');
     Route::post('search', 'ProjectController@search');
 
+    // Dashboard routes
+    Route::get('dashboard', 'DashboardController@index');
+    Route::get('dashboard/messages', 'DashboardController@messages');
+    Route::get('dashboard/notifications', 'DashboardController@notifications');
+
     // User routes
-    Route::get('home', 'UserController@index');
     Route::get('profile', 'UserController@profile');
 
     Route::get('/', 'ProjectController@displayAllProjects');

@@ -19,7 +19,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Display all projects for the current logged in user.
+     * Display all projects.
      *
      * @return mixed
      */

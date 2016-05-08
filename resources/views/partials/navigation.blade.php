@@ -16,13 +16,7 @@
                 {!! ProjectModule::renderNavigationDropDown() !!}
                 <li><a href="/create">Create Your Own</a></li>
                 @if(Auth::check())
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dashboard <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/my-projects">My Projects</a></li>
-                        <li><a href="/message">Messages</a></li>
-                    </ul>
-                </li>
+                    <li><a href="/dashboard">Dashboard</a></li>
                 @endif
             </ul>
             {!! Form::open(array('url' => 'search', 'method' => 'post', 'class' => 'navbar-form navbar-right')) !!}
