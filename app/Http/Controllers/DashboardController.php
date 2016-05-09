@@ -13,20 +13,20 @@ class DashboardController extends Controller
         $projects = Project::ByUserId(Auth::user()->id)->get();
 
         return view('dashboard.my-projects', [
-            'heading' => 'Dashboard',
+            'heading' => 'My projects',
             'projects' => $projects
         ]);
     }
 
     public function messages(){
         return view('dashboard.messages', [
-            'heading' => 'Dashboard'
+            'heading' => 'Messages'
         ]);
     }
 
     public function notifications(){
         return view('dashboard.notifications', [
-            'heading' => 'Dashboard'
+            'heading' => 'Notifications'
         ]);
     }
 }

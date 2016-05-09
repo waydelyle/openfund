@@ -7,7 +7,7 @@
                 <h5 class="text-center">{{ $heading }}</h5>
             </div>
             <ul class="nav navbar-left col-sm-2">
-                <li><a href="/dashboard/projects">My Projects</a></li>
+                <li><a href="/dashboard">My Projects</a></li>
                 <li><a href="/dashboard/messages">Messages</a></li>
                 <li><a href="/dashboard/notifications">Notifications</a></li>
             </ul>
