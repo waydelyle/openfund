@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('scripts')
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    {{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
+    {{--<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>--}}
     <script src="{{ asset('js/project-edit.js') }}"></script>
 @stop
 
@@ -20,7 +23,6 @@
                     <li id="fund" ><a href="#">Fund this</a></li>
                 </ul>
                 <hr />
-
                     <div class="basic">
                         <fieldset>
                             {!! Form::open(array('url' => 'create', 'method' => 'post', 'class' => 'form-horizontal')) !!}
@@ -54,7 +56,16 @@
                             </div>
                     </div>
                     <div class="page">
+                        <form>
+                        <textarea name="editor1" id="editor1" rows="20" cols="100">
 
+                        </textarea>
+                            <script>
+                                // Replace the <textarea id="editor1"> with a CKEditor
+                                // instance, using default configuration.
+                                CKEDITOR.replace( 'editor1' );
+                            </script>
+                        </form>
                     </div>
                     <div class="rewards">
 

@@ -8,6 +8,9 @@ $(document).ready(function(){
     var rewardsButton = $('#rewards');
     var fundButton = $('#fund');
 
+    basicContent.show();
+    pageContent.hide();
+
     $(document).on('click', '#basic', function () {
         removeActiveClasses();
         basicButton.addClass('active');
@@ -39,7 +42,6 @@ $(document).ready(function(){
         basicContent.hide();
         pageContent.hide();
     });
-
 });
 
 function removeActiveClasses(){
