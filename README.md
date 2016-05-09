@@ -11,6 +11,8 @@ create a mysql database and add the credentials to .env in the main project dire
 php artisan migrate:install
 php artisan db:seed
 
+composer install https://getcomposer.org/doc/00-intro.md#introduction
+
 Create a vhost to point to the projects public directory.
 
 For more information https://laravel.com/docs/5.1#configuration
