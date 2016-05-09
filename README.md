@@ -2,6 +2,19 @@
 
 OpenFund is a laravel based open source crowdfunding platform which is still in the early phases of development. We believe crowdfunding should be open source and localized where communities need it the most.
 
+# Installation
+
+git clone git@github.com:waydelyle/openfund.git
+
+create a mysql database and add the credentials to .env in the main project directory.
+
+php artisan migrate:install
+php artisan db:seed
+
+Create a vhost to point to the projects public directory.
+
+For more information https://laravel.com/docs/5.1#configuration
+
 # Contributing to OpenFund
 
 Any contributions are welcome and reviewed before merging into the main repository. You can clone the project and begin developing right away. Right now we are trying to clone the main features of KickStarter so if you're unsure where to begin have a look there and see what's worth implementing next.
