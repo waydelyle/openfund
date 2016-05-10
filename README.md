@@ -2,6 +2,9 @@
 
 OpenFund is a laravel based open source crowdfunding platform which is still in the early phases of development. We believe crowdfunding should be open source and localized where communities need it the most.
 
+# Project satus
+This project is currently still under development and should only be used by developers who would like to contribute to the project or use the base of what has already been implemented.
+
 # Installation
 
 git clone git@github.com:waydelyle/openfund.git
