@@ -1,18 +1,19 @@
 <?php namespace App\Http\Controllers;
 
-use App\Modules\ProjectModule;
-use App\Services\ProjectService;
 use Auth;
 use Validator;
 use App\Project;
 use App\ProjectCategory;
 use Illuminate\Http\Request;
+use App\Modules\ProjectModule;
+use App\Repositories\ProjectRepository;
 
 class ProjectController extends Controller
 {
     /**
      * Display all projects.
      *
+     * @param $projectCategorySlug
      * @return mixed
      */
     public function index($projectCategorySlug = null){
@@ -38,33 +39,18 @@ class ProjectController extends Controller
      * @param Request $request
      */
     public function create(Request $request) {
-        $input = $request->all();
-        $loggedInUser = Auth::user();
+        if(!empty($request->all())){
+            $projectRepository = new ProjectRepository();
 
-        if ($loggedInUser == null) {
-            return redirect('auth/register');
-        }
+            $id = $projectRepository->validateAndCreate([
+                'user_id' => Auth::user()->id,
+                'name' => $request->get('name'),
+                'description' => $request->get('description'),
+                'amount' => $request->get('amount'),
+                'project_category_id' => $request->get('project_category_id'),
+            ]);
 
-        if(!empty($input)){
-            $validator = Validator::make($input, Project::validationArray());
-
-            if($validator->fails()) {
-                //todo wayde fix the errors and don't use this route
-                $errors = $validator->errors();
-            } else {
-                $projectService = new ProjectService();
-
-                $id = $projectService->createProject([
-                    'user_id' => $loggedInUser->id,
-                    'name' => $input['name'],
-                    'description' => $input['description'],
-                    'amount' => $input['amount'],
-                    'project_category_id' => $input['project_category_id'],
-                    'project_status_id' => $input['project_category_id'],
-                ]);
-
-                return redirect("/edit-project/$id");
-            }
+            return redirect("/edit-project/$id");
         }
 
         return view('projects.create', [
@@ -132,16 +118,5 @@ class ProjectController extends Controller
      */
     public function deleteProject($id) {
         //this should be a soft delete that sets the record status to 2
-    }
-
-    /**
-     * Displays projects available to edit.
-     *
-     * @return mixed
-     */
-    public function myProjects(){
-        $projects = Project::ByUserId(Auth::user()->id)->get();
-
-        return view('projects.list-projects', ['projects', $projects]);
     }
 }

@@ -2,7 +2,7 @@
 
 use App\ProjectStatus;
 
-class ProjectStatusRepository
+class ProjectStatusRepository extends BaseRepository
 {
     private $projectStatus;
 

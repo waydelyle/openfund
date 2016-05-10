@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Repositories\PaymentRepository;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
 
@@ -21,12 +22,11 @@ class PaymentController extends Controller
             return redirect('/');
         }
 
-        $paymentService = new PaymentService();
-        $paymentId = $paymentService->createPayment([
+        $paymentRepository = new PaymentRepository();
+        $paymentId = $paymentRepository->validateAndCreate([
             'user_id' => Auth::user()->id,
             'project_id' => $projectId,
             'amount' => $request->get('amount'),
-            'reward_id' => 2
         ]);
 
         return redirect("/payment-successful/$paymentId");

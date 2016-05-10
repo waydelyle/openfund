@@ -2,23 +2,9 @@
 
 use App\Project;
 
-class ProjectRepository
+class ProjectRepository extends BaseRepository
 {
-    private $project;
-
     public function __construct(){
-        $this->project = new Project();
-    }
-
-    /**
-     * Creates a project and returns the newly created projects id.
-     *
-     * @param array $data
-     * @return int $projectId
-     */
-    public function createProject($data = []){
-        $projectId = $this->project->create($data)->id;
-
-        return $projectId;
+        $this->model = new Project();
     }
 }

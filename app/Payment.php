@@ -8,6 +8,23 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Payment extends Model
 {
+    /**
+     * @var array
+     */
+    public $rules = [
+        'user_id' => 'required|max:30',
+        'project_id' => 'required|int|max:50',
+        'reward_id' => 'required|int',
+        'amount' => 'required|int',
+        'payment_status_id' => 'required|int',
+    ];
+
+    /**
+     * @var array
+     */
+    public $defaults = [
+        'payment_status_id' => PaymentStatus::PENDING_ID,
+    ];
 
     /**
      * The table associated with the model.

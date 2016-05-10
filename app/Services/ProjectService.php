@@ -20,10 +20,7 @@ class ProjectService
      * @return int
      */
     public function createProject($data = []){
-        $data['project_status_id'] = ProjectStatus::PENDING_ID;
-        $data['record_status_id'] = RecordStatus::ACTIVE_ID;
-
-        $projectId = $this->projectRepository->createProject($data);
+        $projectId = $this->projectRepository->validateAndCreate($data);
 
         return $projectId;
     }

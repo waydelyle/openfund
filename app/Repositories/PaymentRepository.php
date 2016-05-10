@@ -1,31 +1,22 @@
 <?php namespace App\Repositories;
 
 use App\Payment;
+use App\Project;
 
-class PaymentRepository
+class PaymentRepository extends BaseRepository
 {
-    private $payment;
 
-    public function __construct(){
-        $this->payment = new Payment();
+    public function __construct()
+    {
+        $this->model = new Payment();
     }
 
     /**
-     * @param $data
-     * @return int
-     */
-    public function createPayment($data = []){
-        $paymentId = $this->payment->create($data)->id;
-
-        return $paymentId;
-    }
-
-    /**
-     * @param $projectId
+     * @param Project $project
      * @return Payment[]
      */
-    public function findAllByProjectId($projectId){
-        $paymentsFound = Payment::ByProjectId($projectId)->get();
+    public function findAllByProject(Project $project){
+        $paymentsFound = Payment::ByProjectId($project->id)->get();
 
         return $paymentsFound;
     }

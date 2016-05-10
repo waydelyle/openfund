@@ -41,7 +41,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('projects', 'ProjectController@index');
         Route::get('create', 'ProjectController@create');
         Route::post('create', 'ProjectController@create');
-        Route::get('my-projects', 'ProjectController@myProjects');
         Route::get('edit-project/{id}', 'ProjectController@edit');
         Route::get('delete-project', 'ProjectController@deleteProject');
 

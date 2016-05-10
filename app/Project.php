@@ -9,6 +9,21 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     /**
+     * @var array
+     */
+    public $rules = [
+        'name' => 'required|unique:projects|max:30',
+        'project_category_id' => 'required|int|max:50',
+        'description' => 'required|max:140',
+        'amount' => 'required|int',
+    ];
+
+    public $defaults = [
+        'project_status_id' => ProjectStatus::PENDING_ID,
+        'record_status_id' => RecordStatus::ACTIVE_ID
+    ];
+
+    /**
      * The table associated with the model.
      *
      * @var string
