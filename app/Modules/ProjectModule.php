@@ -2,8 +2,12 @@
 
 use App\Project;
 use App\ProjectCategory;
+use App\Services\PaymentService;
 
 /**
+ * This class is used as a helper in
+ * views to use methods without namespacing.
+ *
  * Class ProjectModule
  */
 class ProjectModule {
@@ -20,53 +24,26 @@ class ProjectModule {
      */
     public static function listProjects($listAmount = self::DEFAULT_LIST_AMOUNT, $category = null, $userId = null)
     {
-        $projectCategory = null;
-        if(!empty($category)){
-            $projectCategory = ProjectCategory::BySlug($category)->first();
-
-            !empty($userId)
-                ? $projects = Project::ByProjectCategoryId($projectCategory->id)->ByUserId($userId)->get()
-                : $projects = Project::ByProjectCategoryId($projectCategory->id)->get();
-        } else if(!empty($userId)) {
-            $projects = Project::ByUserId($userId)->get();
-        } else {
-            $projects = Project::all();
-        }
 
         return view('projects.list-projects', ['projects' => $projects, 'category', $projectCategory]);
     }
 
     /**
-     * Displays a single project by id.
-     *
-     * @param $id
-     * @return mixed
-     */
-    public static function display($id)
-    {
-        $project = Project::find($id);
-
-        if(empty($project)){
-            //todo wayde find correct way to throw http exceptions in laravel.
-        }
-
-        $percentFunded = self::percentFunded($project->amount, $project->amount);
-
-        return view('projects.display-project', ['project' => $project, 'percentFunded' => $percentFunded]);
-    }
-
-    /**
-     * @param int $amountFunded
-     * @param int $amountNeeded
+     * @param Project $project
      * @return int
      */
-    public static function percentFunded($amountFunded, $amountNeeded)
+    public static function percentFunded(Project $project)
     {
-        $percentFunded = ($amountFunded / $amountNeeded) * 100;
+        $paymentService = new PaymentService();
+        $totalAmountFunded = $paymentService->findTotalAmountFunded($project);
+        $percentFunded = $paymentService->percentFunded($project->amount, $totalAmountFunded);
 
         return (int) $percentFunded;
     }
 
+    /**
+     * @return mixed
+     */
     public static function renderNavigationDropDown(){
         $categories = ProjectCategory::all();
         

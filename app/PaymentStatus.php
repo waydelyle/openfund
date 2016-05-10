@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PaymentStatus extends Model
 {
+    const PENDING_ID = 1;
+    const SUCCESSFUL_ID = 2;
+    const FAILED_ID = 3;
+
+    const PENDING_SLUG = 'pending';
+    const SUCCESSFUL_SLUG = 'successful';
+    const FAILED_SLUG = 'failed';
+
     /**
      * The table associated with the model.
      *

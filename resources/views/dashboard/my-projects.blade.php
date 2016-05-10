@@ -16,7 +16,7 @@
                 @if(!empty($projects))
                     @foreach($projects as $project)
                         <tr>
-                            @if($project->projectStatus->id == 1)
+                            @if($project->projectStatus->id == \App\ProjectStatus::PENDING_ID)
                                 <td><a href="/edit-project/{{ $project->id }}">{{ $project->name }}</a></td>
                             @else
                                 <td><a href="/view-project/{{ $project->id }}">{{ $project->name }}</a></td>

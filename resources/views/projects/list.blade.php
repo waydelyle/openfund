@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-
-        @if(!empty($projects[0]))
+        <!-- Page Content -->
+<div class="container">
+    <div class="row">
+        @if(!empty($projects))
             @foreach($projects as $project)
                 <div class="col-md-4">
                     <h4><a href="/view-project/{{ $project->id }}">{{ $project->name }}</a></h4>
@@ -18,9 +17,19 @@
                         <hr />
                         <p>{{ $project->description }}</p>
                         <a href="#"> Read More</a>
-                        <h6>Funding Progress of {{ $project->amount }} needed.</h6>
+                        <?php $percentFunded = ProjectModule::percentFunded($project);?>
+                        <hr />
+                        @if($percentFunded >= 100)
+                            <h6 align="center">This project has been successfully funded.</h6>
+                        @else
+                            <h6 align="center">Funding Progress of {{ $project->amount }} needed.</h6>
+                        @endif
                         <div class="progress progress-striped active">
-                            <div class="progress-bar" style="width: 45%"></div>
+                            @if($percentFunded >= 100)
+                                <div class="progress-bar progress-bar-success" style="width: {{ $percentFunded }}%"></div>
+                            @else
+                                <div class="progress-bar" style="width: {{ $percentFunded }}%"></div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -40,6 +49,6 @@
             </div>
         @endif
 
-        </div>
     </div>
+</div>
 @endsection

@@ -8,6 +8,8 @@ $(document).ready(function(){
     var rewardsButton = $('#rewards');
     var fundButton = $('#fund');
 
+    hideOnLoad();
+
     $(document).on('click', '#overview', function () {
         removeActiveClasses();
         overviewButton.addClass('active');
@@ -47,4 +49,10 @@ function removeActiveClasses(){
     $('#about').removeClass('active');
     $('#rewards').removeClass('active');
     $('#fund').removeClass('active');
+}
+
+function hideOnLoad(){
+    $('.overview').hide();
+    $('.about').hide();
+    $('.rewards').hide();
 }

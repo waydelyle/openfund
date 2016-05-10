@@ -27,25 +27,35 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
     // Project routes...
-    Route::get('projects', 'ProjectController@index');
-    Route::get('create', 'ProjectController@create');
-    Route::post('create', 'ProjectController@create');
-    Route::get('my-projects', 'ProjectController@myProjects');
-    Route::get('edit-project/{id}', 'ProjectController@edit');
-    Route::get('view-project/{id}', 'ProjectController@view');
-    Route::get('delete-project', 'ProjectController@deleteProject');
     Route::post('search', 'ProjectController@search');
+    Route::get('view-project/{id}', 'ProjectController@view');
 
-    // Dashboard routes
-    Route::get('dashboard', 'DashboardController@index');
-    Route::get('dashboard/messages', 'DashboardController@messages');
-    Route::get('dashboard/notifications', 'DashboardController@notifications');
+    // Routes that need users to be signed in...
+    Route::group(['middleware' => ['auth']], function () {
+        // Payment routes...
+        Route::get('/payment-successful/{id}', 'PaymentController@success');
+        Route::get('{id}/pay', 'PaymentController@pay');
+        Route::post('{id}/pay', 'PaymentController@pay');
 
-    // User routes
-    Route::get('profile', 'UserController@profile');
+        // Project routes...
+        Route::get('projects', 'ProjectController@index');
+        Route::get('create', 'ProjectController@create');
+        Route::post('create', 'ProjectController@create');
+        Route::get('my-projects', 'ProjectController@myProjects');
+        Route::get('edit-project/{id}', 'ProjectController@edit');
+        Route::get('delete-project', 'ProjectController@deleteProject');
 
-    Route::get('/', 'ProjectController@displayAllProjects');
-    Route::get('/{category}/projects/', 'ProjectController@displayAllProjects');
+        // Dashboard routes
+        Route::get('dashboard', 'DashboardController@index');
+        Route::get('dashboard/messages', 'DashboardController@messages');
+        Route::get('dashboard/notifications', 'DashboardController@notifications');
+
+        // User routes
+        Route::get('profile', 'UserController@profile');
+    });
+
+    Route::get('/', 'ProjectController@index');
+    Route::get('/{category}/projects/', 'ProjectController@index');
 
     // Sandbox routes
     Route::get('module/project', 'SandboxController@projectModule');

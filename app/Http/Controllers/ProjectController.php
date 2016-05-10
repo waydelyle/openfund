@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Modules\ProjectModule;
+use App\Services\ProjectService;
 use Auth;
 use Validator;
 use App\Project;
@@ -9,24 +11,25 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     /**
-     * Displays all projects or projects by category.
-     *
-     * @param null $projectCategorySlug
-     * @return mixed
-     */
-    public function displayAllProjects($projectCategorySlug = null){
-        return view('welcome', ['projectCategorySlug' => $projectCategorySlug]);
-    }
-
-    /**
      * Display all projects.
      *
      * @return mixed
      */
-    public function index(){
-        $projects = Project::all();
+    public function index($projectCategorySlug = null){
+        $projectCategory = null;
+        if(!empty($projectCategorySlug)){
+            $projectCategory = ProjectCategory::BySlug($projectCategorySlug)->first();
 
-        return view('projects.list-projects', ['projects' => $projects]);
+            !empty($userId)
+                ? $projects = Project::ByProjectCategoryId($projectCategory->id)->ByUserId($userId)->get()
+                : $projects = Project::ByProjectCategoryId($projectCategory->id)->get();
+        } else if(!empty($userId)) {
+            $projects = Project::ByUserId($userId)->get();
+        } else {
+            $projects = Project::all();
+        }
+
+        return view('projects.list', ['projects' => $projects]);
     }
 
     /**
@@ -49,17 +52,18 @@ class ProjectController extends Controller
                 //todo wayde fix the errors and don't use this route
                 $errors = $validator->errors();
             } else {
-                $project = new Project();
+                $projectService = new ProjectService();
 
-                $projectId = $project->create([
+                $id = $projectService->createProject([
                     'user_id' => $loggedInUser->id,
                     'name' => $input['name'],
                     'description' => $input['description'],
                     'amount' => $input['amount'],
                     'project_category_id' => $input['project_category_id'],
-                ])->id;
+                    'project_status_id' => $input['project_category_id'],
+                ]);
 
-                return redirect("/edit-project/$projectId");
+                return redirect("/edit-project/$id");
             }
         }
 
@@ -97,9 +101,15 @@ class ProjectController extends Controller
      * @return mixed
      */
     public function view($id){
+        $project = Project::find($id);
+
+        $percentFunded = ProjectModule::percentFunded($project);
+
         return view('projects.view', [
             'heading' => 'View',
-            'projectId' => $id
+            'projectId' => $id,
+            'project' => $project,
+            'percentFunded' => $percentFunded
         ]);
     }
 
