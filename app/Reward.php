@@ -21,7 +21,7 @@ class Reward extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'project_id', 'label', 'description', 'amount', 'reward_limit',
+        'user_id', 'campaign_id', 'label', 'description', 'amount', 'reward_limit',
     ];
 
     /**
@@ -39,8 +39,8 @@ class Reward extends Model
      * @param $id
      * @return mixed
      */
-    public function scopeByProjectId($query, $id)
+    public function scopeByCampaignId($query, $id)
     {
-        return $query->where('project_id', $id);
+        return $query->where('campaign_id', $id);
     }
 }

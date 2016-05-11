@@ -164,14 +164,13 @@ return [
         /*
          * OpenFund Service Providers
          */
-        App\Providers\ProjectModuleServiceProvider::class,
+        App\Providers\CampaignModuleServiceProvider::class,
         App\Providers\UserModuleServiceProvider::class,
 
         /*
          * Additional Service Providers
          */
         Collective\Html\HtmlServiceProvider::class,
-
 
     ],
 
@@ -223,7 +222,7 @@ return [
         /*
          * OpenFund aliases
          */
-        'ProjectModule' => App\Facades\ProjectModule::class,
+        'CampaignModule' => App\Facades\CampaignModule::class,
         'UserModule' => App\Facades\UserModule::class,
 
         /*

@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class RecordStatus extends Model
 {
+    const ACTIVE_ID = 1;
+    const NOT_ACTIVE_ID = 2;
+
+    const ACTIVE_SLUG = 'active';
+    const NOT_ACTIVE_SLUG = 'not-active';
+
     /**
      * The table associated with the model.
      *

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Modules\ProjectModule;
+use App\Modules\CampaignModule;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +15,7 @@ use App\Http\Requests;
  */
 class SandboxController extends Controller
 {
-    public function projectModule(){
+    public function campaignModule(){
         return view('sandbox.index');
     }
 }

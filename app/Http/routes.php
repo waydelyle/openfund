@@ -26,22 +26,36 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
     Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
-    // Project routes...
-    Route::get('projects', 'ProjectController@index');
-    Route::get('create', 'ProjectController@create');
-    Route::post('create', 'ProjectController@create');
-    Route::get('edit-project/{id}', 'ProjectController@edit');
-    Route::get('view-project/{id}', 'ProjectController@view');
-    Route::get('delete-project', 'ProjectController@deleteProject');
-    Route::post('search', 'ProjectController@search');
+    // Campaign routes...
+    Route::post('search', 'CampaignController@search');
+    Route::get('view-campaign/{id}', 'CampaignController@view');
 
-    // User routes
-    Route::get('home', 'UserController@index');
-    Route::get('profile', 'UserController@profile');
+    // Routes that need users to be signed in...
+    Route::group(['middleware' => ['auth']], function () {
+        // Payment routes...
+        Route::get('/payment-successful/{id}', 'PaymentController@success');
+        Route::get('{id}/pay', 'PaymentController@pay');
+        Route::post('{id}/pay', 'PaymentController@pay');
 
-    Route::get('/', 'ProjectController@displayAllProjects');
-    Route::get('/{category}/projects/', 'ProjectController@displayAllProjects');
+        // Campaign routes...
+        Route::get('campaigns', 'CampaignController@index');
+        Route::get('create', 'CampaignController@create');
+        Route::post('create', 'CampaignController@create');
+        Route::get('edit-campaign/{id}', 'CampaignController@edit');
+        Route::get('delete-campaign', 'CampaignController@deleteCampaign');
+
+        // Dashboard routes
+        Route::get('dashboard', 'DashboardController@index');
+        Route::get('dashboard/messages', 'DashboardController@messages');
+        Route::get('dashboard/notifications', 'DashboardController@notifications');
+
+        // User routes
+        Route::get('profile', 'UserController@profile');
+    });
+
+    Route::get('/', 'CampaignController@index');
+    Route::get('/{category}/campaigns/', 'CampaignController@index');
 
     // Sandbox routes
-    Route::get('module/project', 'SandboxController@projectModule');
+    Route::get('module/campaign', 'SandboxController@campaignModule');
 });

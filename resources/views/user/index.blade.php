@@ -8,14 +8,14 @@
             <div class="col-md-4">
                 <div class="thumbnail">
                     <div class="caption-full" align="center">
-                        <h4><a href="projects">View Your Projects</a></h4>
+                        <h4><a href="campaigns">View Your Campaigns</a></h4>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="thumbnail" align="center">
                     <div class="caption-full">
-                        <h4><a href="create">Create A New Project</a></h4>
+                        <h4><a href="create">Create A New Campaign</a></h4>
                     </div>
                 </div>
             </div>
