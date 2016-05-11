@@ -1,6 +1,7 @@
 <?php  namespace App\Modules;
 
 Use Session;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 /**
  * Class UserModule

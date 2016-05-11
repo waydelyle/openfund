@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 /**
  * Class User

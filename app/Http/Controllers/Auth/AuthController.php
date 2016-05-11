@@ -39,7 +39,6 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-//        Auth::loginUsingId(3);
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
