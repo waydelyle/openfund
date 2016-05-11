@@ -1,6 +1,4 @@
-v<?php
-
-use Illuminate\Database\Seeder;
+v<?php use Illuminate\Database\Seeder;
 
 class PaymentStatusSeeder extends Seeder
 {

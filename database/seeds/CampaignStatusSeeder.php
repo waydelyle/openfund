@@ -1,6 +1,4 @@
-<?php
-
-use Illuminate\Database\Seeder;
+<?php use Illuminate\Database\Seeder;
 
 class CampaignStatusSeeder extends Seeder
 {
