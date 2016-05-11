@@ -19,6 +19,7 @@
                     <li id="about" ><a href="#">About</a></li>
                     <li id="rewards" ><a href="#">Rewards</a></li>
                     <li id="fund" ><a href="#">Fund this</a></li>
+                    <li id="message" ><a href="#">Message Creator</a></li>
                 </ul>
                 <hr />
                 <div class="overview">
@@ -50,6 +51,14 @@
                     @else
                         <div class="progress-bar" style="width: {{ $percentFunded }}%"></div>
                     @endif
+                </div>
+
+                <div class="fund">
+
+                </div>
+
+                <div class="message">
+
                 </div>
             </div>
         </div>

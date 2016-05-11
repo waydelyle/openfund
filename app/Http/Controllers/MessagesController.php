@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 
 class MessagesController extends Controller
 {
+    
     /**
      * Show all of the message threads to the user.
      *
@@ -29,6 +30,7 @@ class MessagesController extends Controller
         // $threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
         return view('messenger.index', compact('threads', 'currentUserId'));
     }
+    
     /**
      * Shows a message thread.
      *
@@ -51,6 +53,7 @@ class MessagesController extends Controller
         $thread->markAsRead($userId);
         return view('messenger.show', compact('thread', 'users'));
     }
+    
     /**
      * Creates a new message thread.
      *
@@ -61,6 +64,7 @@ class MessagesController extends Controller
         $users = User::where('id', '!=', Auth::id())->get();
         return view('messenger.create', compact('users'));
     }
+    
     /**
      * Stores a new message thread.
      *
@@ -96,6 +100,7 @@ class MessagesController extends Controller
         }
         return redirect('messages');
     }
+    
     /**
      * Adds a new message to a current thread.
      *
@@ -110,7 +115,9 @@ class MessagesController extends Controller
             Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
             return redirect('messages');
         }
+        
         $thread->activateAllParticipants();
+        
         // Message
         Message::create(
             [
@@ -119,6 +126,7 @@ class MessagesController extends Controller
                 'body'      => Input::get('message'),
             ]
         );
+        
         // Add replier as a participant
         $participant = Participant::firstOrCreate(
             [
@@ -126,12 +134,14 @@ class MessagesController extends Controller
                 'user_id'   => Auth::user()->id,
             ]
         );
+        
         $participant->last_read = new Carbon;
         $participant->save();
         // Recipients
         if (Input::has('recipients')) {
             $thread->addParticipants(Input::get('recipients'));
         }
+        
         return redirect('messages/' . $id);
     }
 }

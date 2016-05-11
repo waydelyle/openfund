@@ -7,6 +7,7 @@ $(document).ready(function(){
     var aboutButton = $('#about');
     var rewardsButton = $('#rewards');
     var fundButton = $('#fund');
+    var MessageButton = $('#message');
 
     hideOnLoad();
 
@@ -42,6 +43,14 @@ $(document).ready(function(){
         aboutContent.hide();
     });
 
+    $(document).on('click', '#message', function () {
+        removeActiveClasses();
+        MessageButton.addClass('active');
+        rewardsContent.show();
+        overviewContent.hide();
+        aboutContent.hide();
+    });
+
 });
 
 function removeActiveClasses(){
@@ -49,10 +58,12 @@ function removeActiveClasses(){
     $('#about').removeClass('active');
     $('#rewards').removeClass('active');
     $('#fund').removeClass('active');
+    $('#message').removeClass('active');
 }
 
 function hideOnLoad(){
     $('.overview').hide();
     $('.about').hide();
     $('.rewards').hide();
+    $('.message').hide();
 }
