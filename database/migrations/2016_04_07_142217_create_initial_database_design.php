@@ -50,7 +50,7 @@ class CreateInitialDatabaseDesign extends Migration
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->integer('user_id')->references('id')->on('users');
-            $table->integer('campaign_category_id', 50)->references('id')->on('campaign_categories');
+            $table->integer('campaign_category_id')->references('id')->on('campaign_categories');
             $table->string('description', 140);
             $table->bigInteger('amount');
             $table->smallInteger('campaign_status_id')->references('id')->on('campaign_statuses');
