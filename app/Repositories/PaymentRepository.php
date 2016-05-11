@@ -1,7 +1,7 @@
 <?php namespace App\Repositories;
 
 use App\Payment;
-use App\Project;
+use App\Campaign;
 
 class PaymentRepository extends BaseRepository
 {
@@ -12,11 +12,11 @@ class PaymentRepository extends BaseRepository
     }
 
     /**
-     * @param Project $project
+     * @param Campaign $campaign
      * @return Payment[]
      */
-    public function findAllByProject(Project $project){
-        $paymentsFound = Payment::ByProjectId($project->id)->get();
+    public function findAllByCampaign(Campaign $campaign){
+        $paymentsFound = Payment::ByCampaignId($campaign->id)->get();
 
         return $paymentsFound;
     }

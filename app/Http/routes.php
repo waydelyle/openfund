@@ -26,9 +26,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
     Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
-    // Project routes...
-    Route::post('search', 'ProjectController@search');
-    Route::get('view-project/{id}', 'ProjectController@view');
+    // Campaign routes...
+    Route::post('search', 'CampaignController@search');
+    Route::get('view-campaign/{id}', 'CampaignController@view');
 
     // Routes that need users to be signed in...
     Route::group(['middleware' => ['auth']], function () {
@@ -37,12 +37,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{id}/pay', 'PaymentController@pay');
         Route::post('{id}/pay', 'PaymentController@pay');
 
-        // Project routes...
-        Route::get('projects', 'ProjectController@index');
-        Route::get('create', 'ProjectController@create');
-        Route::post('create', 'ProjectController@create');
-        Route::get('edit-project/{id}', 'ProjectController@edit');
-        Route::get('delete-project', 'ProjectController@deleteProject');
+        // Campaign routes...
+        Route::get('campaigns', 'CampaignController@index');
+        Route::get('create', 'CampaignController@create');
+        Route::post('create', 'CampaignController@create');
+        Route::get('edit-campaign/{id}', 'CampaignController@edit');
+        Route::get('delete-campaign', 'CampaignController@deleteCampaign');
 
         // Dashboard routes
         Route::get('dashboard', 'DashboardController@index');
@@ -53,9 +53,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('profile', 'UserController@profile');
     });
 
-    Route::get('/', 'ProjectController@index');
-    Route::get('/{category}/projects/', 'ProjectController@index');
+    Route::get('/', 'CampaignController@index');
+    Route::get('/{category}/campaigns/', 'CampaignController@index');
 
     // Sandbox routes
-    Route::get('module/project', 'SandboxController@projectModule');
+    Route::get('module/campaign', 'SandboxController@campaignModule');
 });

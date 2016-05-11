@@ -4,31 +4,31 @@
     <div class="col-sm-10">
         <table class="table table-striped table-hover ">
             <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Project category</th>
-                    <th>Funding needed</th>
-                    <th>Funding received</th>
-                    <th>Project status</th>
-                </tr>
+            <tr>
+                <th>Name</th>
+                <th>Campaign category</th>
+                <th>Funding needed</th>
+                <th>Funding received</th>
+                <th>Campaign status</th>
+            </tr>
             </thead>
             <tbody>
-                @if(!empty($projects))
-                    @foreach($projects as $project)
-                        <tr>
-                            @if($project->projectStatus->id == \App\ProjectStatus::PENDING_ID)
-                                <td><a href="/edit-project/{{ $project->id }}">{{ $project->name }}</a></td>
-                            @else
-                                <td><a href="/view-project/{{ $project->id }}">{{ $project->name }}</a></td>
-                            @endif
-                            <td>{{ $project->category->label }}</td>
-                            <td>{{ $project->amount }}</td>
-                            <td>{{ $project->amount }}</td>
-                            <td>{{ $project->projectStatus->label }}</td>
-                        </tr>
-                    @endforeach
-                @endif
-        </tbody>
-    </table>
+            @if(!empty($campaigns))
+                @foreach($campaigns as $campaign)
+                    <tr>
+                        @if($campaign->campaignStatus->id == \App\CampaignStatus::PENDING_ID)
+                            <td><a href="/edit-campaign/{{ $campaign->id }}">{{ $campaign->name }}</a></td>
+                        @else
+                            <td><a href="/view-campaign/{{ $campaign->id }}">{{ $campaign->name }}</a></td>
+                        @endif
+                        <td>{{ $campaign->category->label }}</td>
+                        <td>{{ $campaign->amount }}</td>
+                        <td>{{ $campaign->amount }}</td>
+                        <td>{{ $campaign->campaignStatus->label }}</td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
     </div>
 @endsection

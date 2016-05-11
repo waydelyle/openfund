@@ -28,7 +28,7 @@ class CreateInitialDatabaseDesign extends Migration
             $table->timestamps();
         });
 
-        Schema::create('project_statuses', function (Blueprint $table) {
+        Schema::create('campaign_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug', 50)->unique();
             $table->string('label', 50);
@@ -37,7 +37,7 @@ class CreateInitialDatabaseDesign extends Migration
             $table->timestamps();
         });
 
-        Schema::create('project_categories', function (Blueprint $table) {
+        Schema::create('campaign_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug', 50)->unique();
             $table->string('label', 50);
@@ -46,14 +46,14 @@ class CreateInitialDatabaseDesign extends Migration
             $table->timestamps();
         });
 
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('campaigns', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->integer('user_id')->references('id')->on('users');
-            $table->integer('project_category_id', 50)->references('id')->on('project_categories');
+            $table->integer('campaign_category_id', 50)->references('id')->on('campaign_categories');
             $table->string('description', 140);
             $table->bigInteger('amount');
-            $table->smallInteger('project_status_id')->references('id')->on('project_statuses');
+            $table->smallInteger('campaign_status_id')->references('id')->on('campaign_statuses');
             $table->smallInteger('funding_status_id')->references('id')->on('funding_statuses');
             $table->timestamps();
         });
@@ -70,7 +70,7 @@ class CreateInitialDatabaseDesign extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->references('id')->on('users');
-            $table->integer('project_id')->references('id')->on('projects');
+            $table->integer('campaign_id')->references('id')->on('campaigns');
             $table->bigInteger('amount');
             $table->smallInteger('payment_status_id')->references('id')->on('payment_statuses');
             $table->timestamps();
@@ -79,7 +79,7 @@ class CreateInitialDatabaseDesign extends Migration
         Schema::create('rewards', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->references('id')->on('users');
-            $table->integer('project_id')->references('id')->on('projects');
+            $table->integer('campaign_id')->references('id')->on('campaigns');
             $table->string('label', 50);
             $table->string('description', 140);
             $table->bigInteger('amount');

@@ -4,25 +4,25 @@
     <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
     {{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
     {{--<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>--}}
-    <script src="{{ asset('js/project-edit.js') }}"></script>
-@stop
+    <script src="{{ asset('js/campaign-edit.js') }}"></script>
+    @stop
 
-@section('content')
-    <!-- Page Content -->
+    @section('content')
+            <!-- Page Content -->
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ $name }}</h3>
             </div>
             <div class="panel-body">
-            <div class="col-md-14 project-container">
-                <ul class="nav nav-pills">
-                    <li id="basic" class="active"><a href="#">Basic information</a></li>
-                    <li id="page" ><a href="#">Page setup</a></li>
-                    <li id="rewards" ><a href="#">Add rewards</a></li>
-                    <li id="fund" ><a href="#">Fund this</a></li>
-                </ul>
-                <hr />
+                <div class="col-md-14 campaign-container">
+                    <ul class="nav nav-pills">
+                        <li id="basic" class="active"><a href="#">Basic information</a></li>
+                        <li id="page" ><a href="#">Page setup</a></li>
+                        <li id="rewards" ><a href="#">Add rewards</a></li>
+                        <li id="fund" ><a href="#">Fund this</a></li>
+                    </ul>
+                    <hr />
                     <div class="basic">
                         <fieldset>
                             {!! Form::open(array('url' => 'create', 'method' => 'post', 'class' => 'form-horizontal')) !!}
@@ -49,9 +49,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('project_category_id', 'Category', ['class' => 'col-lg-2 control-label']) !!}
+                                {!! Form::label('campaign_category_id', 'Category', ['class' => 'col-lg-2 control-label']) !!}
                                 <div class="col-lg-10">
-                                    {!! Form::select('project_category_id', $projectCategories, $projectCategoryId, array('class' => 'form-control')) !!}
+                                    {!! Form::select('campaign_category_id', $campaignCategories, $campaignCategoryId, array('class' => 'form-control')) !!}
                                 </div>
                             </div>
                     </div>
@@ -71,7 +71,7 @@
 
                     </div>
 
-            </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
@@ -81,7 +81,7 @@
                 </div>
                 {!! Form::close() !!}
                 </fieldset>
+            </div>
         </div>
-    </div>
-    <!-- /.container -->
+        <!-- /.container -->
 @endsection

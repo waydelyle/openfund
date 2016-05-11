@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Project;
+use App\Campaign;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class DashboardController extends Controller
 {
     public function index(){
-        $projects = Project::ByUserId(Auth::user()->id)->get();
+        $campaigns = Campaign::ByUserId(Auth::user()->id)->get();
 
-        return view('dashboard.my-projects', [
-            'heading' => 'My projects',
-            'projects' => $projects
+        return view('dashboard.my-campaigns', [
+            'heading' => 'My campaigns',
+            'campaigns' => $campaigns
         ]);
     }
 

@@ -2,7 +2,7 @@
 
 use Auth;
 use App\Payment;
-use App\Project;
+use App\Campaign;
 use App\Repositories\PaymentRepository;
 
 class PaymentService
@@ -26,11 +26,11 @@ class PaymentService
     }
 
     /**
-     * @param Project $project
+     * @param Campaign $campaign
      * @return int
      */
-    public function findTotalAmountFunded(Project $project){
-        $foundPayments = $this->paymentRepository->findAllByProject($project);
+    public function findTotalAmountFunded(Campaign $campaign){
+        $foundPayments = $this->paymentRepository->findAllByCampaign($campaign);
 
         $totalFunded = 0;
         foreach($foundPayments as $payment){
@@ -47,8 +47,8 @@ class PaymentService
      */
     public function percentFunded($amountNeeded, $amountFunded){
 
-            $percentFunded = ($amountFunded / $amountNeeded) * 100;
+        $percentFunded = ($amountFunded / $amountNeeded) * 100;
 
-            return (int) $percentFunded;
+        return (int) $percentFunded;
     }
 }

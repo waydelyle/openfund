@@ -13,7 +13,7 @@ class Payment extends Model
      */
     public $rules = [
         'user_id' => 'required|max:30',
-        'project_id' => 'required|int|max:50',
+        'campaign_id' => 'required|int|max:50',
         'reward_id' => 'required|int',
         'amount' => 'required|int',
         'payment_status_id' => 'required|int',
@@ -39,7 +39,7 @@ class Payment extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'project_id', 'amount', 'payment_status_id',
+        'user_id', 'campaign_id', 'amount', 'payment_status_id',
     ];
 
     /**
@@ -57,9 +57,9 @@ class Payment extends Model
      * @param $id
      * @return mixed
      */
-    public function scopeByProjectId($query, $id)
+    public function scopeByCampaignId($query, $id)
     {
-        return $query->where('project_id', $id);
+        return $query->where('campaign_id', $id);
     }
 
     /**

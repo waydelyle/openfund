@@ -1,11 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-use App\Repositories\PaymentRepository;
-use App\Services\PaymentService;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\PaymentRepository;
 
 class PaymentController extends Controller
 {
@@ -14,18 +13,18 @@ class PaymentController extends Controller
      */
     public function makePayment($rewardId){
 
-        return redirect("/project/{id}/reward");
+        return redirect("/campaign/{id}/reward");
     }
 
-    public function pay(Request $request, $projectId = null){
-        if( ! $request->has('amount') || empty($projectId)){
+    public function pay(Request $request, $campaignId = null){
+        if( ! $request->has('amount') || empty($campaignId)){
             return redirect('/');
         }
 
         $paymentRepository = new PaymentRepository();
         $paymentId = $paymentRepository->validateAndCreate([
             'user_id' => Auth::user()->id,
-            'project_id' => $projectId,
+            'project_id' => $campaignId,
             'amount' => $request->get('amount'),
         ]);
 

@@ -1,9 +1,9 @@
 <?php namespace App\Providers;
 
-use App\Modules\ProjectModule;
+use App\Modules\CampaignModule;
 use Illuminate\Support\ServiceProvider;
 
-class ProjectModuleServiceProvider extends ServiceProvider
+class CampaignModuleServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -22,8 +22,8 @@ class ProjectModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ProjectModule::class, function($app){
-            return new ProjectModule();
+        $this->app->singleton(CampaignModule::class, function($app){
+            return new CampaignModule();
         });
     }
 }

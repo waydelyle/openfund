@@ -1,14 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\Reward;
-use App\Project;
+use App\Campaign;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class RewardController extends Controller
 {
     /**
-     * Add a new reward to a project.
+     * Add a new reward to a campaign.
      *
      * @param Request $request
      * @param $id
@@ -21,12 +21,12 @@ class RewardController extends Controller
             $reward = new Reward();
 
             if(!$reward->create([
-                'project_id' => $id,
-                'description' => $postedRewardData['inputProjectDescription'],
-                'amount' => $postedRewardData['inputProjectFunding']
+                'campaign_id' => $id,
+                'description' => $postedRewardData['inputCampaignDescription'],
+                'amount' => $postedRewardData['inputCampaignFunding']
             ]));
 
-            return redirect("/project-edit/$id");
+            return redirect("/campaign-edit/$id");
         }
 
         return view('rewards.create', [
@@ -47,12 +47,12 @@ class RewardController extends Controller
         if(!empty($postedRewardData)){
 
             if(!$reward->update([
-                'project_id' => $id,
-                'description' => $postedRewardData['inputProjectDescription'],
-                'amount' => $postedRewardData['inputProjectFunding']
+                'campaign_id' => $id,
+                'description' => $postedRewardData['inputCampaignDescription'],
+                'amount' => $postedRewardData['inputCampaignFunding']
             ]));
 
-            return redirect("/project-edit/$id");
+            return redirect("/campaign-edit/$id");
         }
 
         return view('rewards.create', [

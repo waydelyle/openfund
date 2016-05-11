@@ -13,18 +13,18 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-                {!! ProjectModule::renderNavigationDropDown() !!}
+                {!! CampaignModule::renderNavigationDropDown() !!}
                 <li><a href="/create">Create Your Own</a></li>
                 @if(Auth::check())
                     <li><a href="/dashboard">Dashboard</a></li>
                 @endif
             </ul>
             {!! Form::open(array('url' => 'search', 'method' => 'post', 'class' => 'navbar-form navbar-right')) !!}
-                <div class="form-group">
-                    {!! Form::text('search', old('search'), ['class' => 'form-control', 'placeholder' =>  'Search']) !!}
+            <div class="form-group">
+                {!! Form::text('search', old('search'), ['class' => 'form-control', 'placeholder' =>  'Search']) !!}
 
-                </div>
-                {!! Form::submit(' &#9654; ', ['class' => 'btn btn-default']) !!}
+            </div>
+            {!! Form::submit(' &#9654; ', ['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
             <ul class="nav navbar-nav navbar-right">
                 @if(!Auth::check())
