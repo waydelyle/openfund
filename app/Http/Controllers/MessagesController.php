@@ -78,6 +78,7 @@ class MessagesController extends Controller
                 'subject' => $input['subject'],
             ]
         );
+
         // Message
         Message::create(
             [
@@ -86,6 +87,7 @@ class MessagesController extends Controller
                 'body'      => $input['message'],
             ]
         );
+
         // Sender
         Participant::create(
             [
@@ -94,10 +96,12 @@ class MessagesController extends Controller
                 'last_read' => new Carbon,
             ]
         );
+
         // Recipients
         if (Input::has('recipients')) {
             $thread->addParticipants($input['recipients']);
         }
+
         return redirect('messages');
     }
     

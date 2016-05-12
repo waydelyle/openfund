@@ -51,6 +51,9 @@ Route::group(['middleware' => ['web']], function () {
 
         // User routes
         Route::get('profile', 'UserController@profile');
+
+        // Messaging Routes
+        Route::post('message/store/', ['as' => 'store/', 'uses' => 'MessagesController@store']);
     });
 
     Route::get('/', 'CampaignController@index');

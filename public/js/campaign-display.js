@@ -2,12 +2,14 @@ $(document).ready(function(){
     var overviewContent = $('.overview');
     var aboutContent = $('.about');
     var rewardsContent = $('.rewards');
+    var fundContent = $('.fund');
+    var messageContent = $('.message');
 
     var overviewButton = $('#overview');
     var aboutButton = $('#about');
     var rewardsButton = $('#rewards');
     var fundButton = $('#fund');
-    var MessageButton = $('#message');
+    var messageButton = $('#message');
 
     hideOnLoad();
 
@@ -17,6 +19,8 @@ $(document).ready(function(){
         overviewContent.show();
         aboutContent.hide();
         rewardsContent.hide();
+        fundContent.hide();
+        messageContent.hide();
     });
 
     $(document).on('click', '#about', function () {
@@ -25,6 +29,8 @@ $(document).ready(function(){
         aboutContent.show();
         overviewContent.hide();
         rewardsContent.hide();
+        fundContent.hide();
+        messageContent.hide();
     });
 
     $(document).on('click', '#rewards', function () {
@@ -33,22 +39,28 @@ $(document).ready(function(){
         rewardsContent.show();
         overviewContent.hide();
         aboutContent.hide();
+        fundContent.hide();
+        messageContent.hide();
     });
 
     $(document).on('click', '#fund', function () {
         removeActiveClasses();
         fundButton.addClass('active');
-        rewardsContent.show();
+        fundContent.show();
         overviewContent.hide();
+        rewardsContent.hide();
         aboutContent.hide();
+        messageContent.hide();
     });
 
     $(document).on('click', '#message', function () {
         removeActiveClasses();
-        MessageButton.addClass('active');
-        rewardsContent.show();
+        messageButton.addClass('active');
+        messageContent.show();
         overviewContent.hide();
         aboutContent.hide();
+        rewardsContent.hide();
+        fundContent.hide();
     });
 
 });
@@ -65,5 +77,6 @@ function hideOnLoad(){
     $('.overview').hide();
     $('.about').hide();
     $('.rewards').hide();
+    $('.fund').hide();
     $('.message').hide();
 }
