@@ -60,15 +60,7 @@
                         <div class="form-group">
                             {!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Message', 'style' => 'resize: none']) !!}
                         </div>
-
-                        @if($users->count() > 0)
-                            <div class="checkbox">
-                                @foreach($users as $user)
-                                    <label title="{!!$user->name!!}"><input type="checkbox" name="recipients[]" value="{!!$user->id!!}">{!!$user->name!!}</label>
-                                @endforeach
-                            </div>
-                    @endif
-
+                        <input type="hidden" name="recipient" value="{!!$campaign->user_id!!}">
                     <!-- Submit Form Input -->
                         <div class="form-group">
                             {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}

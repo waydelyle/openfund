@@ -8,12 +8,24 @@
     @endif
     @if($threads->count() > 0)
         @foreach($threads as $thread)
-            <?php $class = $thread->isUnread($currentUserId) ? 'alert-info' : ''; ?>
-            <div class="media alert {!! $class !!}">
-                <h4 class="media-heading">{!! link_to('messages/' . $thread->id, $thread->subject) !!}</h4>
-                <p>{!! $thread->latestMessage->body !!}</p>
-                <p><small><strong>Creator:</strong> {!! $thread->creator()->name !!}</small></p>
-                <p><small><strong>Participants:</strong> {!! $thread->participantsString(Auth::id()) !!}</small></p>
+            <div class="container">
+                <div class="col-md-10 pull-right">
+                    @if($thread->isUnread($currentUserId))
+                        <div class="panel panel-warning">
+                    @else
+                        <div class="panel panel-primary">
+                    @endif
+                            <div class="panel-heading">
+                                <h4 class="panel-title">{!! link_to('messages/' . $thread->id, $thread->subject) !!}</h4>
+                            </div>
+                            <div class="panel-body">
+                                <p>{!! substr($thread->latestMessage->body, 0, 50) . '...' !!}</p>
+                            </div>
+                            <p>
+                                <small><strong>From:</strong> {!! $thread->creator()->name !!}</small>
+                            </p>
+                        </div>
+                </div>
             </div>
         @endforeach
     @else

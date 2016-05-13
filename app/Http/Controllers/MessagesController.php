@@ -102,7 +102,7 @@ class MessagesController extends Controller
             $thread->addParticipants($input['recipients']);
         }
 
-        return redirect('messages');
+        return back();
     }
     
     /**

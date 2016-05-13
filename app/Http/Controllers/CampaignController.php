@@ -89,7 +89,6 @@ class CampaignController extends Controller
      */
     public function view($id){
         $campaign = Campaign::find($id);
-        $users = User::where('id', '!=', Auth::id())->get();
         $percentFunded = CampaignModule::percentFunded($campaign);
 
         return view('campaigns.view', [
@@ -97,7 +96,6 @@ class CampaignController extends Controller
             'campaignId' => $id,
             'campaign' => $campaign,
             'percentFunded' => $percentFunded,
-            'users' => $users
         ]);
     }
 
