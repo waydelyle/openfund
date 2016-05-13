@@ -16,7 +16,7 @@
                         <div class="panel panel-primary">
                     @endif
                             <div class="panel-heading">
-                                <h4 class="panel-title">{!! link_to('messages/' . $thread->id, $thread->subject) !!}</h4>
+                                <h4 class="panel-title">{!! link_to('message/show/' . $thread->id, $thread->subject) !!}</h4>
                             </div>
                             <div class="panel-body">
                                 <p>{!! substr($thread->latestMessage->body, 0, 50) . '...' !!}</p>

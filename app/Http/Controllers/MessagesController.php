@@ -13,24 +13,6 @@ use Illuminate\Support\Facades\Session;
 
 class MessagesController extends Controller
 {
-    
-    /**
-     * Show all of the message threads to the user.
-     *
-     * @return mixed
-     */
-    public function index()
-    {
-        $currentUserId = Auth::user()->id;
-        // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->get();
-        // All threads that user is participating in
-        // $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
-        // All threads that user is participating in, with new messages
-        // $threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
-        return view('messenger.index', compact('threads', 'currentUserId'));
-    }
-    
     /**
      * Shows a message thread.
      *
@@ -51,7 +33,7 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
         $thread->markAsRead($userId);
-        return view('messenger.show', compact('thread', 'users'));
+        return view('messages.show', compact('thread', 'users'));
     }
     
     /**
