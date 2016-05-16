@@ -53,7 +53,7 @@ class MessagesController extends Controller
      * @param $userId
      * @return mixed
      */
-    public function store($userId)
+    public function store()
     {
         $input = Input::all();
         $thread = Thread::create(
@@ -81,12 +81,8 @@ class MessagesController extends Controller
         );
 
         // Recipients
-        if ($userId) {
-            $participants = [
-                'user_id' => $userId
-            ];
-            
-            $thread->addParticipants($participants);
+        if (Input::has('recipients')) {
+            $thread->addParticipants($input['recipients']);
         }
 
         return back();

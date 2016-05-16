@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="message">
-                    {!! Form::open(['route' => ['store/', $campaign->user_id]]) !!}
+                    {!! Form::open(['route' => 'store/']) !!}
                     <div class="col-md-12">
                         <!-- Subject Form Input -->
                         <div class="form-group">
@@ -60,6 +60,8 @@
                         <div class="form-group">
                             {!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Message', 'style' => 'resize: none']) !!}
                         </div>
+
+                        <input type="hidden" name="recipients[]" value="{!!$campaign->user_id!!}">
                     <!-- Submit Form Input -->
                         <div class="form-group">
                             {!! Form::submit('Send', ['class' => 'btn btn-primary form-control']) !!}
