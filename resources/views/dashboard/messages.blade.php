@@ -16,14 +16,11 @@
                         <div class="panel panel-primary">
                     @endif
                             <div class="panel-heading">
-                                <h4 class="panel-title">{!! link_to('message/show/' . $thread->id, $thread->subject) !!}</h4>
+                                <h4 class="panel-title">{!! link_to('message/show/' . $thread->id, $thread->subject) . ' - ' . $thread->participantsString(Auth::id())!!}</h4>
                             </div>
                             <div class="panel-body">
                                 <p>{!! substr($thread->latestMessage->body, 0, 50) . '...' !!}</p>
                             </div>
-                            <p>
-                                <small><strong>From:</strong> {!! $thread->creator()->name !!}</small>
-                            </p>
                         </div>
                 </div>
             </div>

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
         // Messaging Routes
         Route::post('message/store/', ['as' => 'store/', 'uses' => 'MessagesController@store']);
         Route::get('message/show/{id}', ['as' => 'show/', 'uses' => 'MessagesController@show']);
-        Route::put('message/update/{id}', 'MessagesController@update');
+        Route::put('message/update/{id}', ['as' => 'update/', 'uses' => 'MessagesController@update']);
     });
 
     Route::get('/', 'CampaignController@index');

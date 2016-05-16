@@ -63,7 +63,7 @@
                         <input type="hidden" name="recipient[]" value="{!! $campaign->user_id !!}">
                     <!-- Submit Form Input -->
                         <div class="form-group">
-                            {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+                            {!! Form::submit('Send', ['class' => 'btn btn-primary form-control']) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -85,7 +85,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- /.container -->
 @endsection
