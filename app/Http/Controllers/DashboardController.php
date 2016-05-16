@@ -19,10 +19,12 @@ class DashboardController extends Controller
 {
     public function index(){
         $campaigns = Campaign::ByUserId(Auth::user()->id)->get();
+        $count = Auth::user()->newMessagesCount();
 
         return view('dashboard.my-campaigns', [
             'heading' => 'My campaigns',
-            'campaigns' => $campaigns
+            'campaigns' => $campaigns,
+            'count' => $count
         ]);
     }
 
@@ -32,6 +34,7 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function messages(){
+        $count = Auth::user()->newMessagesCount();
         $currentUserId = Auth::user()->id;
         // All threads that user is participating in
         $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
@@ -39,7 +42,8 @@ class DashboardController extends Controller
         return view('dashboard.messages', [
             'heading' => 'Inbox',
             'threads' => $threads,
-            'currentUserId' => $currentUserId
+            'currentUserId' => $currentUserId,
+            'count' => $count
         ]);
     }
 
