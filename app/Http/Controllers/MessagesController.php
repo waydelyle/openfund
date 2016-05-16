@@ -46,13 +46,14 @@ class MessagesController extends Controller
         $users = User::where('id', '!=', Auth::id())->get();
         return view('messenger.create', compact('users'));
     }
-    
+
     /**
      * Stores a new message thread.
      *
+     * @param $userId
      * @return mixed
      */
-    public function store()
+    public function store($userId)
     {
         $input = Input::all();
         $thread = Thread::create(
@@ -80,8 +81,12 @@ class MessagesController extends Controller
         );
 
         // Recipients
-        if (Input::has('recipients')) {
-            $thread->addParticipants($input['recipients']);
+        if ($userId) {
+            $participants = [
+                'user_id' => $userId
+            ];
+            
+            $thread->addParticipants($participants);
         }
 
         return back();

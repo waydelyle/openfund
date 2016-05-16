@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('profile', 'UserController@profile');
 
         // Messaging Routes
-        Route::post('message/store/', ['as' => 'store/', 'uses' => 'MessagesController@store']);
+        Route::post('message/store/{id}', ['as' => 'store/', 'uses' => 'MessagesController@store']);
         Route::get('message/show/{id}', ['as' => 'show/', 'uses' => 'MessagesController@show']);
         Route::put('message/update/{id}', ['as' => 'update/', 'uses' => 'MessagesController@update']);
     });
