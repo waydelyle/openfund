@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\User;
 use Auth;
 use Validator;
 use App\Campaign;
@@ -88,14 +89,13 @@ class CampaignController extends Controller
      */
     public function view($id){
         $campaign = Campaign::find($id);
-
         $percentFunded = CampaignModule::percentFunded($campaign);
 
         return view('campaigns.view', [
             'heading' => 'View',
             'campaignId' => $id,
             'campaign' => $campaign,
-            'percentFunded' => $percentFunded
+            'percentFunded' => $percentFunded,
         ]);
     }
 
