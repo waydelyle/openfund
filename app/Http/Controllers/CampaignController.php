@@ -38,6 +38,7 @@ class CampaignController extends Controller
      * Insert campaign data into database.
      *
      * @param Request $request
+     * @return mixed
      */
     public function create(Request $request) {
         if(!empty($request->all())){
@@ -73,14 +74,12 @@ class CampaignController extends Controller
         if(!empty($request->all())){
             $campaignRepository = new CampaignRepository();
 
-            $valid = $campaignRepository->validateAndUpdate([
+            $campaignRepository->validateAndUpdate($campaign, [
                 'name' => $request->get('name'),
                 'description' => $request->get('description'),
                 'amount' => $request->get('amount'),
                 'campaign_category_id' => $request->get('campaign_category_id'),
             ]);
-
-            var_dump($valid); die;
 
             return redirect("/edit-campaign/$id");
         }

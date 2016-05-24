@@ -31,8 +31,8 @@ class BaseRepository
      * @return mixed
      */
     public function validateAndCreate($data = []){
-        if(is_array($this->modelRules)){
-            $data = array_merge($data, $this->modelRules);
+        if(is_array($this->modelDefaults)){
+            $data = array_merge($data, $this->modelDefaults);
         }
 
         if(is_array($this->customRules) && !empty($this->customRules)){
@@ -41,22 +41,26 @@ class BaseRepository
             }
         }
 
-        $validator = Validator::make($data, $this->modelRules);
+        if(!empty($this->modelRules)){
+            $validator = Validator::make($data, $this->modelRules);
 
-        if( ! $validator->fails()){
-            $autoIncrementedId = $this->model->create($data)->id;
+            if($validator->fails()){
+                //todo wayde flash errors from session for forms.
+                var_dump($validator->errors());
+                die('failed to create');
+            } else {
+                $autoIncrementedId = $this->model->create($data)->id;
+            }
         } else {
-            //todo wayde flash errors from session for forms.
-            var_dump($validator->errors());
-            die('failed to create');
+            $autoIncrementedId = $this->model->create($data)->id;
         }
 
         return $autoIncrementedId;
     }
 
-    public function validateAndUpdate($data = []){
-        if(is_array($this->modelRules)){
-            $data = array_merge($data, $this->modelRules);
+    public function validateAndUpdate($record, $data = []){
+        if(is_array($this->modelDefaults)){
+            $data = array_merge($data, $this->modelDefaults);
         }
 
         if(is_array($this->customRules) && !empty($this->customRules)){
@@ -65,21 +69,20 @@ class BaseRepository
             }
         }
 
-        $validator = Validator::make($data, $this->modelRules);
+        if(!empty($this->modelRules)){
+            $validator = Validator::make($data, $this->modelRules);
 
-        $autoIncrementedId = false;
-        if( ! $validator->fails()){
-            $autoIncrementedId = $this->model->update($data);
+            if($validator->fails()){
+                //todo wayde flash errors from session for forms.
+                var_dump($validator->errors());
+                die('failed to update');
+            } else {
+                $updatedRecord = $record->update($data);
+            }
         } else {
-            //todo wayde flash errors from session for forms.
-            var_dump($validator->errors());
-            die('failed to update');
+            $updatedRecord = $record->update($data);
         }
 
-        if(is_int($autoIncrementedId)){
-            return true;
-        }
-
-        return false;
+        return $updatedRecord;
     }
 }

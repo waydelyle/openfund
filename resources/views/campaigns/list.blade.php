@@ -6,17 +6,17 @@
     <div class="row">
         @if(!empty($campaigns))
             @foreach($campaigns as $campaign)
+                <?php $percentFunded = CampaignModule::percentFunded($campaign);?>
                 <div class="col-md-4">
                     <h4><a href="/view-campaign/{{ $campaign->id }}">{{ $campaign->name }}</a></h4>
                     <a href="/{{ $campaign->category->slug }}/campaigns"><span class="label label-default">{{ $campaign->category->label }}</span></a>
-                    {{--@if($percentFunded == 100)--}}
-                    {{--<span class="label label-success">{{ $campaign->campaignStatus->label }}</span>--}}
-                    {{--@endif--}}
+                    @if($percentFunded == 100)
+                    <span class="label label-success">{{ $campaign->campaignStatus->label }}</span>
+                    @endif
                     <div class="thumbnail">
                         <img class="img-responsive" src="http://placehold.it/800x300" alt="">
                         <hr />
                         <p>{{ $campaign->description }}</p>
-                        <?php $percentFunded = CampaignModule::percentFunded($campaign);?>
                         <hr />
                         @if($percentFunded >= 100)
                             <h6 align="center">This campaign has been successfully funded.</h6>

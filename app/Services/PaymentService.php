@@ -47,7 +47,10 @@ class PaymentService
      */
     public function percentFunded($amountNeeded, $amountFunded){
 
-        $percentFunded = ($amountFunded / $amountNeeded) * 100;
+        $percentFunded = 0;
+        if($amountNeeded !== 0 && $amountFunded !== 0){
+            $percentFunded = ($amountFunded / $amountNeeded) * 100;
+        }
 
         return (int) $percentFunded;
     }
