@@ -44,7 +44,6 @@ class CampaignController extends Controller
             $campaignRepository = new CampaignRepository();
 
             $id = $campaignRepository->validateAndCreate([
-                'user_id' => Auth::user()->id,
                 'name' => $request->get('name'),
                 'description' => $request->get('description'),
                 'amount' => $request->get('amount'),
@@ -69,12 +68,27 @@ class CampaignController extends Controller
      * @return mixed
      */
     public function edit(Request $request, $id) {
-
         $campaign = Campaign::find($id);
+
+        if(!empty($request->all())){
+            $campaignRepository = new CampaignRepository();
+
+            $valid = $campaignRepository->validateAndUpdate([
+                'name' => $request->get('name'),
+                'description' => $request->get('description'),
+                'amount' => $request->get('amount'),
+                'campaign_category_id' => $request->get('campaign_category_id'),
+            ]);
+
+            var_dump($valid); die;
+
+            return redirect("/edit-campaign/$id");
+        }
 
         return view('campaigns.edit', [
             'heading' => 'Setup Campaigns',
             'errors' => isset($errors) ? $errors : null,
+            'campaignId' => $campaign->id,
             'name' => $campaign->name,
             'description' => $campaign->description,
             'amount' => $campaign->amount,
@@ -108,7 +122,7 @@ class CampaignController extends Controller
     public function search(Request $request){
         $foundCampaigns = Campaign::where('name', 'like', '%' . $request->get('search') . '%')->get();
 
-        return view('campaigns.list-campaigns', ['campaigns' => $foundCampaigns]);
+        return view('campaigns.list', ['campaigns' => $foundCampaigns]);
     }
 
     /**

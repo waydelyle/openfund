@@ -42,6 +42,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('create', 'CampaignController@create');
         Route::post('create', 'CampaignController@create');
         Route::get('edit-campaign/{id}', 'CampaignController@edit');
+        Route::post('update-campaign/{id}', 'CampaignController@edit');
         Route::get('delete-campaign', 'CampaignController@deleteCampaign');
 
         // Dashboard routes

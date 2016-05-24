@@ -11,7 +11,7 @@ class Campaign extends Model
     /**
      * @var array
      */
-    public $rules = [
+    public $createRules = [
         'name' => 'required|unique:campaigns|max:30',
         'campaign_category_id' => 'required|int|max:50',
         'description' => 'required|max:140',

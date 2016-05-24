@@ -10,6 +10,7 @@ class PaymentController extends Controller
 {
     /**
      * @param $rewardId
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function makePayment($rewardId){
 
@@ -24,7 +25,7 @@ class PaymentController extends Controller
         $paymentRepository = new PaymentRepository();
         $paymentId = $paymentRepository->validateAndCreate([
             'user_id' => Auth::user()->id,
-            'project_id' => $campaignId,
+            'campaign_id' => $campaignId,
             'amount' => $request->get('amount'),
         ]);
 

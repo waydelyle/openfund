@@ -4,6 +4,7 @@
     <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
     {{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
     {{--<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>--}}
+    <script src="{{ asset('js/steps.js') }}"></script>
     <script src="{{ asset('js/campaign-edit.js') }}"></script>
     @stop
 
@@ -17,15 +18,14 @@
             <div class="panel-body">
                 <div class="col-md-14 campaign-container">
                     <ul class="nav nav-pills">
-                        <li id="basic" class="active"><a href="#">Basic information</a></li>
-                        <li id="page" ><a href="#">Page setup</a></li>
+                        <li id="basic-information" class="active"><a href="#">Basic information</a></li>
+                        <li id="page-setup" ><a href="#">Page setup</a></li>
                         <li id="rewards" ><a href="#">Add rewards</a></li>
-                        <li id="fund" ><a href="#">Fund this</a></li>
                     </ul>
                     <hr />
-                    <div class="basic">
+                    <div class="basic-information">
                         <fieldset>
-                            {!! Form::open(array('url' => 'create', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+                            {!! Form::open(array('url' => 'update-campaign/' . $campaignId, 'method' => 'post', 'id' => 'campaign-edit-form', 'class' => 'form-horizontal')) !!}
                             <legend>{{ $heading }}</legend>
 
                             @include('form.form-validation-errors', ['errors' => !empty($errors) ? $errors : 0])
@@ -54,8 +54,9 @@
                                     {!! Form::select('campaign_category_id', $campaignCategories, $campaignCategoryId, array('class' => 'form-control')) !!}
                                 </div>
                             </div>
+                        </fieldset>
                     </div>
-                    <div class="page">
+                    <div class="page-setup">
                         <form>
                         <textarea name="editor1" id="editor1" rows="20" cols="100">
 
@@ -75,8 +76,8 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        {!! Form::reset('Reset all', ['class' => 'btn btn-default']) !!}
-                        {!! Form::submit('Submit for review', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Back', ['id' => 'backButton', 'class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Next', ['id' => 'nextButton', 'class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}

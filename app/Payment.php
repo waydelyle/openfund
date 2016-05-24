@@ -11,7 +11,18 @@ class Payment extends Model
     /**
      * @var array
      */
-    public $rules = [
+    public $createRules = [
+        'user_id' => 'required|max:30',
+        'campaign_id' => 'required|int|max:50',
+        'reward_id' => 'required|int',
+        'amount' => 'required|int',
+        'payment_status_id' => 'required|int',
+    ];
+
+    /**
+     * @var array
+     */
+    public $updateRules = [
         'user_id' => 'required|max:30',
         'campaign_id' => 'required|int|max:50',
         'reward_id' => 'required|int',
