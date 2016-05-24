@@ -1,12 +1,11 @@
 @extends('layouts.master')
-
+@section('scripts')
+    <script src="{{ asset('js/steps.js') }}"></script>
+    <script src="{{ asset('js/campaign-view.js') }}"></script>
+@stop
 @section('content')
 <!-- Page Content -->
 <div class="container">
-    @section('scripts')
-        <script src="{{ asset('js/campaign-display.js') }}"></script>
-    @endsection
-
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{ $campaign->name }}</h3>
@@ -15,11 +14,11 @@
             <div class="col-md-14 campaign-container">
 
                 <ul class="nav nav-pills">
-                    <li id="overview" class="active"><a href="#">Overview</a></li>
-                    <li id="about" ><a href="#">About</a></li>
-                    <li id="rewards" ><a href="#">Rewards</a></li>
-                    <li id="fund" ><a href="#">Fund this</a></li>
-                    <li id="message" ><a href="#">Message Creator</a></li>
+                    <li id="overview" class="active steps-navigation"><a href="#">Overview</a></li>
+                    <li id="about" class="steps-navigation"><a href="#">About</a></li>
+                    <li id="rewards" class="steps-navigation"><a href="#">Rewards</a></li>
+                    <li id="fund" class="steps-navigation"><a href="#">Fund this</a></li>
+                    <li id="message" class="steps-navigation"><a href="#">Message Creator</a></li>
                 </ul>
                 <hr />
 

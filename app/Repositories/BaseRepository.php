@@ -31,7 +31,7 @@ class BaseRepository
      * @return mixed
      */
     public function validateAndCreate($data = []){
-        if(is_array($this->model->defaults)){
+        if(is_array($this->modelRules)){
             $data = array_merge($data, $this->modelRules);
         }
 

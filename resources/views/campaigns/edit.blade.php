@@ -2,14 +2,12 @@
 
 @section('scripts')
     <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
-    {{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
-    {{--<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>--}}
     <script src="{{ asset('js/steps.js') }}"></script>
     <script src="{{ asset('js/campaign-edit.js') }}"></script>
-    @stop
+@stop
 
-    @section('content')
-            <!-- Page Content -->
+@section('content')
+    <!-- Page Content -->
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -18,9 +16,9 @@
             <div class="panel-body">
                 <div class="col-md-14 campaign-container">
                     <ul class="nav nav-pills">
-                        <li id="basic-information" class="active"><a href="#">Basic information</a></li>
-                        <li id="page-setup" ><a href="#">Page setup</a></li>
-                        <li id="rewards" ><a href="#">Add rewards</a></li>
+                        <li id="basic-information" class="active steps-navigation"><a href="#">Basic information</a></li>
+                        <li id="page-setup" class="steps-navigation"><a href="#">Page setup</a></li>
+                        <li id="rewards" class="steps-navigation"><a href="#">Add rewards</a></li>
                     </ul>
                     <hr />
                     <div class="basic-information">

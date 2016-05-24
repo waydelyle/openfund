@@ -19,4 +19,8 @@ $(document).ready(function(){
     $(document).on('click', stepsWizard.backButton, function () {
         stepsWizard.backStep();
     });
+
+    $(document).on('click', stepsWizard.navigationBarClass, function (){
+        stepsWizard.navigationBarClick(this)
+    });
 });

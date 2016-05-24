@@ -5,6 +5,7 @@ stepsWizard  = {
 
     nextButton: '#nextButton',
     backButton: '#backButton',
+    navigationBarClass: '.steps-navigation',
 
     nextButtonText: 'Next',
     finishButtonText: 'finish',
@@ -44,7 +45,7 @@ stepsWizard  = {
         }
 
         this.hideStep();
-        this.deactiveButton();
+        this.deactivateButton();
 
         this.currentStep = this.currentStep+1;
 
@@ -62,7 +63,7 @@ stepsWizard  = {
 
     backStep: function (){
         this.hideStep();
-        this.deactiveButton();
+        this.deactivateButton();
 
         if(this.currentStep === this.steps.length-1){
             this.showNextButton();
@@ -106,7 +107,7 @@ stepsWizard  = {
         $(this.showHideButtonOperator + this.steps[this.currentStep]).addClass('active');
     },
 
-    deactiveButton: function(){
+    deactivateButton: function(){
         $(this.showHideButtonOperator + this.steps[this.currentStep]).removeClass('active');
     },
 
@@ -116,5 +117,28 @@ stepsWizard  = {
         }
 
         return false;
+    },
+
+    // this method needs to be altered to work with settings above
+    navigationBarClick: function(clickedObject){
+        var clickedId = clickedObject.id;
+
+        this.deactivateButton();
+        this.hideStep();
+
+        this.currentStep = this.steps.indexOf(clickedId);
+
+        if(this.currentStep+1 === this.steps.length){
+            this.showFinishButton();
+        } else if(this.currentStep === this.firstStep) {
+            this.showNextButton();
+            this.hideBackButton();
+        } else {
+            this.showBackButton();
+            this.showNextButton();
+        }
+
+        this.activateButton();
+        this.showStep()
     }
 };

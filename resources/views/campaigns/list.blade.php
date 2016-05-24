@@ -16,7 +16,6 @@
                         <img class="img-responsive" src="http://placehold.it/800x300" alt="">
                         <hr />
                         <p>{{ $campaign->description }}</p>
-                        <a href="#"> Read More</a>
                         <?php $percentFunded = CampaignModule::percentFunded($campaign);?>
                         <hr />
                         @if($percentFunded >= 100)
