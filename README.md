@@ -5,16 +5,20 @@ OpenFund is a laravel based open source crowdfunding platform which is still in 
 # Project satus
 This project is currently still under development and should only be used by developers who would like to contribute to the project or use the base of what has already been implemented.
 
+# Support us
+
+We will be doing a round of crowdfunding to speed up development in the future. To get notified about our crowdfunding campaign or for general updates click here https://www.indiegogo.com/projects/openfund/coming_soon/.
+
 # Installation
 
 git clone git@github.com:waydelyle/openfund.git
+
+composer install https://getcomposer.org/doc/00-intro.md#introduction
 
 create a mysql database and add the credentials to .env in the main project directory.
 
 php artisan migrate:install
 php artisan db:seed
-
-composer install https://getcomposer.org/doc/00-intro.md#introduction
 
 Create a vhost to point to the projects public directory.
 
