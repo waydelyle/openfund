@@ -33,4 +33,9 @@ class CampaignCategory extends Model
     {
         return $query->where('slug', $slug);
     }
+    
+    public function scopeGetCategories()
+    {
+        return $query->select('*');
+    }
 }
