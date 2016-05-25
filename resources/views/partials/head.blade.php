@@ -28,6 +28,7 @@
     <![endif]-->
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/open/open.js') }}"></script>
+    <script src="{{ asset('js/open/campaign/campaign.js') }}"></script>
 
 
     <!-- Loads OpenFund custom scripts -->

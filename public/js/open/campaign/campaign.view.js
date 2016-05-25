@@ -30,18 +30,20 @@
            'message'
         ],
         initialize: function(){
-            Open.steps.init(steps);
+
+            Open.steps.init(this.steps);
 
             $(document).on('click', Open.steps.navigationBarClass, function (){
-                Open.steps.navigationBarClick(this)
+                Open.steps.navigationBarClick(this);
             });
         }
 
     }
-        $(function(){
 
-            Open.campaign.view.initialize();
+    $(function(){
 
-        });
+        Open.campaign.view.initialize();
 
-    })()
+    });
+
+})()

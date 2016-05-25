@@ -24,7 +24,7 @@ var Open = Open || {};
         for(i = 0; i < a.length; i++){
 
             d = a[i].split(".");
-            o = Cosmos;
+            o = Open;
 
             for(j = (d[0] === "Cosmos") ? 1 : 0; j < d.length; j = j + 1){
 

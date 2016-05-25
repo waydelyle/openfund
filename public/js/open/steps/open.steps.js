@@ -61,8 +61,8 @@
             var showHideOperator = self.showHideOperator;
 
             $(self.steps).each(function(){
-                if(self.valueOf() != firstStep){
-                    $(showHideOperator + self.valueOf()).hide();
+                if(this.valueOf() != firstStep){
+                    $(showHideOperator + this.valueOf()).hide();
                 }
             });
         },
