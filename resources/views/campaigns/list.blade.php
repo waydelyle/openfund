@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    @include('partials.carousel')
         <!-- Page Content -->
 <div class="container">
     <div class="row">
