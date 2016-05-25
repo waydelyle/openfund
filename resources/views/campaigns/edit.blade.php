@@ -2,8 +2,8 @@
 
 @section('scripts')
     <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('js/steps.js') }}"></script>
-    <script src="{{ asset('js/campaign-edit.js') }}"></script>
+    <script src="{{ asset('js/open/steps/open.steps.js') }}"></script>
+    <script src="{{ asset('js/open/campaign/campaign.edit.js') }}"></script>
 @stop
 
 @section('content')
