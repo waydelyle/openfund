@@ -27,6 +27,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/open/open.js') }}"></script>
+    <script src="{{ asset('js/open/campaign/campaign.js') }}"></script>
+
 
     <!-- Loads OpenFund custom scripts -->
     @section('scripts')

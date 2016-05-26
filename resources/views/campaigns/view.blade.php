@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('scripts')
-    <script src="{{ asset('js/steps.js') }}"></script>
-    <script src="{{ asset('js/campaign-view.js') }}"></script>
+    <script src="{{ asset('js/open/steps/open.steps.js') }}"></script>
+    <script src="{{ asset('js/open/campaign/campaign.view.js') }}"></script>
 @stop
 @section('content')
 <!-- Page Content -->

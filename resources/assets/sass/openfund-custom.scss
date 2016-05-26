@@ -1,0 +1,25 @@
+/**
+    Forms
+**/
+
+
+form{
+    .form-group{
+
+        position: relative;
+
+        input.input-float:focus ~ label,
+        input.input--touched ~ label {
+            color: #2196f3;
+            bottom: 2em;
+        }
+
+        label.label-float{
+            transition: 0.2s ease all;
+            text-align: left;
+            position: absolute;
+            left: 0;
+            bottom:0;
+        }
+    }
+}
