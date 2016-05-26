@@ -10,9 +10,9 @@
         @include('form.form-validation-errors', ['errors' => !empty($errors) ? $errors : 0])
 
         <div class="form-group">
-            {!! Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) !!}
             <div class="col-lg-10">
-                {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' =>  'Campaign Name']) !!}
+                {!! Form::text('name', old('name'), ['class' => 'form-control input-float']) !!}
+                {!! Form::label('Campaign Name', 'Name', ['class' => 'col-lg-2 control-label label-float']) !!}
             </div>
         </div>
         <div class="form-group">

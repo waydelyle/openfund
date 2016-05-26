@@ -22,7 +22,7 @@ Run these commands in the root directory
 php artisan migrate:install
 php artisan migrate
 php artisan db:seed
-npm install 
+npm install
 
 Create a vhost to point to the projects public directory.
 
