@@ -8,7 +8,7 @@
             </div>
             <ul class="nav navbar-left col-sm-2">
                 <li><a href="/dashboard">My Campaigns</a></li>
-                <li><a href="/dashboard/messages">Inbox <small><?= $count ?></small></a></li>
+                <li><a href="/dashboard/messages">Inbox <small><?= !empty($count) ? $count : 0?></small></a></li>
                 <li><a href="/dashboard/notifications">Notifications</a></li>
             </ul>
             <div class="panel-body">
